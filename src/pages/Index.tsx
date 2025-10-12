@@ -16,18 +16,21 @@ const Index = () => {
         </div>
         
         <div className="relative z-10 container mx-auto px-6 text-center animate-fade-in">
+          <div className="inline-block mb-4 px-6 py-2 bg-primary/20 border-2 border-primary rounded-full">
+            <span className="font-bold text-primary text-sm tracking-wider">🥊 PROFESSIONAL BOXING GYM</span>
+          </div>
           <h1 className="font-display text-7xl md:text-9xl font-bold mb-6 tracking-tight">
-            IRONFIST
+            IRONFIST BOXING
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-muted-foreground max-w-2xl mx-auto font-medium">
-            Train like a champion. Fight like a warrior. Become unstoppable.
+            Master the sweet science. Train with professional boxing coaches. Step into the ring.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <Button size="lg" className="bg-gradient-hero text-lg px-8 py-6 font-bold hover:shadow-glow transition-all">
-              START YOUR JOURNEY
+              BOOK FREE BOXING CLASS
             </Button>
             <Button size="lg" variant="secondary" className="text-lg px-8 py-6 font-bold">
-              VIEW CLASSES
+              VIEW BOXING PROGRAMS
             </Button>
           </div>
         </div>
@@ -54,28 +57,28 @@ const Index = () => {
 
       {/* Programs Section */}
       <section className="py-24 container mx-auto px-6">
-        <h2 className="font-display text-5xl md:text-6xl text-center mb-4">TRAINING PROGRAMS</h2>
-        <p className="text-center text-muted-foreground mb-16 text-lg">Choose your path to greatness</p>
+        <h2 className="font-display text-5xl md:text-6xl text-center mb-4">BOXING PROGRAMS</h2>
+        <p className="text-center text-muted-foreground mb-16 text-lg">From beginner to championship level</p>
         
         <div className="grid md:grid-cols-3 gap-8">
           {[
             {
               icon: Dumbbell,
               title: "Beginner Boxing",
-              description: "Master the fundamentals with expert guidance. Perfect for those starting their boxing journey.",
-              features: ["Basic techniques", "Footwork training", "Conditioning"]
+              description: "Learn proper stance, jab, cross, and hooks. Master boxing fundamentals with certified coaches.",
+              features: ["Boxing stance & footwork", "Basic punch combinations", "Speed bag & heavy bag work"]
             },
             {
               icon: Users,
-              title: "Group Classes",
-              description: "High-energy sessions that push your limits. Train alongside motivated athletes.",
-              features: ["Cardio boxing", "Sparring practice", "Team motivation"]
+              title: "Boxing Fitness Classes",
+              description: "High-intensity boxing workouts. Learn to throw punches like a pro while getting in peak shape.",
+              features: ["Cardio boxing rounds", "Pad work with trainers", "Group sparring drills"]
             },
             {
               icon: Trophy,
-              title: "Elite Training",
-              description: "Professional coaching for competitive fighters. Take your skills to championship level.",
-              features: ["1-on-1 coaching", "Fight preparation", "Advanced techniques"]
+              title: "Competitive Boxing",
+              description: "Train for amateur or professional boxing matches. Championship-level coaching and sparring.",
+              features: ["Ring sparring sessions", "Fight camp preparation", "Competition strategy"]
             }
           ].map((program, i) => (
             <Card key={i} className="p-8 bg-gradient-card border-border hover:border-primary transition-all hover:shadow-card group animate-fade-in" style={{ animationDelay: `${i * 0.15}s` }}>
@@ -99,15 +102,15 @@ const Index = () => {
       {/* Trainers Section */}
       <section className="py-24 bg-secondary/50">
         <div className="container mx-auto px-6">
-          <h2 className="font-display text-5xl md:text-6xl text-center mb-4">MEET OUR TRAINERS</h2>
-          <p className="text-center text-muted-foreground mb-16 text-lg">Learn from the best in the business</p>
+          <h2 className="font-display text-5xl md:text-6xl text-center mb-4">BOXING COACHES</h2>
+          <p className="text-center text-muted-foreground mb-16 text-lg">Certified boxing trainers with professional fight experience</p>
           
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { name: "Mike Rodriguez", role: "Head Coach", exp: "15 years" },
-              { name: "Sarah Chen", role: "Boxing Specialist", exp: "10 years" },
-              { name: "Marcus Johnson", role: "Strength Coach", exp: "12 years" },
-              { name: "Elena Volkov", role: "Cardio Expert", exp: "8 years" }
+              { name: "Mike Rodriguez", role: "Head Boxing Coach", exp: "Ex-Pro Boxer, 22-3 record" },
+              { name: "Sarah Chen", role: "Boxing Technique Specialist", exp: "Olympic Boxing Coach" },
+              { name: "Marcus Johnson", role: "Boxing Fitness Coach", exp: "Former Golden Gloves Champion" },
+              { name: "Elena Volkov", role: "Youth Boxing Coach", exp: "Amateur Boxing Champion" }
             ].map((trainer, i) => (
               <Card key={i} className="p-6 bg-gradient-card border-border hover:border-primary transition-all group animate-scale-in" style={{ animationDelay: `${i * 0.1}s` }}>
                 <div className="aspect-square bg-muted rounded-lg mb-4 flex items-center justify-center group-hover:scale-105 transition-transform">
@@ -129,9 +132,9 @@ const Index = () => {
         
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {[
-            { name: "Basic", price: "49", features: ["Gym access", "Group classes", "Locker room"] },
-            { name: "Pro", price: "99", features: ["Everything in Basic", "Personal training (2x/month)", "Nutrition guide", "Priority booking"], popular: true },
-            { name: "Elite", price: "199", features: ["Everything in Pro", "Unlimited personal training", "Fight prep coaching", "Recovery sessions"] }
+            { name: "Basic", price: "49", features: ["Boxing gym access", "Group boxing classes", "Heavy bags & speed bags", "Locker room"] },
+            { name: "Pro", price: "99", features: ["Everything in Basic", "2 private boxing sessions/month", "Sparring access", "Boxing gloves included"], popular: true },
+            { name: "Elite", price: "199", features: ["Everything in Pro", "Unlimited private coaching", "Fight preparation & cornering", "Competition registration support"] }
           ].map((plan, i) => (
             <Card key={i} className={`p-8 bg-gradient-card border-border hover:shadow-card transition-all animate-fade-in ${plan.popular ? 'border-primary shadow-glow scale-105' : ''}`} style={{ animationDelay: `${i * 0.15}s` }}>
               {plan.popular && (
@@ -163,13 +166,13 @@ const Index = () => {
       {/* CTA Section */}
       <section className="py-24 bg-gradient-hero">
         <div className="container mx-auto px-6 text-center">
-          <Clock className="w-16 h-16 mx-auto mb-6" />
-          <h2 className="font-display text-5xl md:text-6xl mb-6 text-primary-foreground">READY TO FIGHT?</h2>
+          <div className="text-6xl mb-6">🥊</div>
+          <h2 className="font-display text-5xl md:text-6xl mb-6 text-primary-foreground">STEP INTO THE RING</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto text-primary-foreground/90">
-            Join IronFist today and transform your body, mind, and spirit. First week is on us.
+            Start your boxing journey at IronFist. First boxing class completely free.
           </p>
           <Button size="lg" variant="secondary" className="text-lg px-8 py-6 font-bold">
-            CLAIM FREE TRIAL
+            BOOK FREE BOXING CLASS
           </Button>
         </div>
       </section>
@@ -179,8 +182,8 @@ const Index = () => {
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <h3 className="font-display text-2xl mb-4">IRONFIST</h3>
-              <p className="text-muted-foreground text-sm">Building champions since 2009</p>
+              <h3 className="font-display text-2xl mb-4">IRONFIST BOXING</h3>
+              <p className="text-muted-foreground text-sm">Brooklyn's premier boxing gym since 2009</p>
             </div>
             <div>
               <h4 className="font-bold mb-4">Hours</h4>
