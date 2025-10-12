@@ -132,9 +132,9 @@ const Index = () => {
         
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {[
-            { name: "Basic", price: "49", features: ["Boxing gym access", "Group boxing classes", "Heavy bags & speed bags", "Locker room"] },
-            { name: "Pro", price: "99", features: ["Everything in Basic", "2 private boxing sessions/month", "Sparring access", "Boxing gloves included"], popular: true },
-            { name: "Elite", price: "199", features: ["Everything in Pro", "Unlimited private coaching", "Fight preparation & cornering", "Competition registration support"] }
+            { name: "Basic", price: "45", features: ["Boxing gym access", "Group boxing classes", "Heavy bags & speed bags", "Locker room"] },
+            { name: "Pro", price: "89", features: ["Everything in Basic", "2 private boxing sessions/month", "Sparring access", "Boxing gloves included"], popular: true },
+            { name: "Elite", price: "179", features: ["Everything in Pro", "Unlimited private coaching", "Fight preparation & cornering", "Competition registration support"] }
           ].map((plan, i) => (
             <Card key={i} className={`p-8 bg-gradient-card border-border hover:shadow-card transition-all animate-fade-in ${plan.popular ? 'border-primary shadow-glow scale-105' : ''}`} style={{ animationDelay: `${i * 0.15}s` }}>
               {plan.popular && (
@@ -144,7 +144,7 @@ const Index = () => {
               )}
               <h3 className="font-display text-3xl mb-2">{plan.name}</h3>
               <div className="mb-6">
-                <span className="font-display text-5xl text-primary">${plan.price}</span>
+                <span className="font-display text-5xl text-primary">£{plan.price}</span>
                 <span className="text-muted-foreground">/month</span>
               </div>
               <ul className="space-y-3 mb-8">
@@ -183,7 +183,7 @@ const Index = () => {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <h3 className="font-display text-2xl mb-4">BRUNSWICK BOXING</h3>
-              <p className="text-muted-foreground text-sm">Brooklyn's premier boxing gym since 2009</p>
+              <p className="text-muted-foreground text-sm">Twickenham's premier boxing gym since 2009</p>
             </div>
             <div>
               <h4 className="font-bold mb-4">Hours</h4>
@@ -191,11 +191,11 @@ const Index = () => {
             </div>
             <div>
               <h4 className="font-bold mb-4">Location</h4>
-              <p className="text-muted-foreground text-sm">123 Fight Street<br/>Brooklyn, NY 11201</p>
+              <p className="text-muted-foreground text-sm">Twickenham<br/>London, UK</p>
             </div>
             <div>
               <h4 className="font-bold mb-4">Contact</h4>
-              <p className="text-muted-foreground text-sm">info@ironfist.gym<br/>(555) 123-4567</p>
+              <p className="text-muted-foreground text-sm">info@brunswickboxing.co.uk<br/>020 1234 5678</p>
             </div>
           </div>
           <div className="border-t border-border pt-8 text-center text-muted-foreground text-sm">
