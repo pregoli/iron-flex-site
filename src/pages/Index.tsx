@@ -20,7 +20,7 @@ const Index = () => {
             <span className="font-bold text-primary text-sm tracking-wider">🥊 PROFESSIONAL BOXING GYM</span>
           </div>
           <h1 className="font-display text-7xl md:text-9xl font-bold mb-6 tracking-tight">
-            IRONFIST BOXING
+            BRUNSWICK BOXING
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-muted-foreground max-w-2xl mx-auto font-medium">
             Master the sweet science. Train with professional boxing coaches. Step into the ring.
@@ -169,7 +169,7 @@ const Index = () => {
           <div className="text-6xl mb-6">🥊</div>
           <h2 className="font-display text-5xl md:text-6xl mb-6 text-primary-foreground">STEP INTO THE RING</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto text-primary-foreground/90">
-            Start your boxing journey at IronFist. First boxing class completely free.
+            Start your boxing journey at Brunswick Boxing. First boxing class completely free.
           </p>
           <Button size="lg" variant="secondary" className="text-lg px-8 py-6 font-bold">
             BOOK FREE BOXING CLASS
@@ -182,7 +182,7 @@ const Index = () => {
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <h3 className="font-display text-2xl mb-4">IRONFIST BOXING</h3>
+              <h3 className="font-display text-2xl mb-4">BRUNSWICK BOXING</h3>
               <p className="text-muted-foreground text-sm">Brooklyn's premier boxing gym since 2009</p>
             </div>
             <div>
@@ -199,7 +199,7 @@ const Index = () => {
             </div>
           </div>
           <div className="border-t border-border pt-8 text-center text-muted-foreground text-sm">
-            © 2024 IronFist Boxing Gym. All rights reserved.
+            © 2024 Brunswick Boxing. All rights reserved.
           </div>
         </div>
       </footer>
