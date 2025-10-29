@@ -1,108 +1,24 @@
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Dumbbell, Users, Trophy, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Dumbbell, Users, Trophy, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import heroImage from "@/assets/hero-boxing.jpg";
 
 const Index = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setMobileMenuOpen(false);
-    }
-  };
-
-  // Structured Data for Local Business
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "SportsActivityLocation",
-    "name": "Brunswick Boxing",
-    "image": "https://brunswickboxing.co.uk/hero-boxing.jpg",
-    "description": "Premier professional boxing gym in Twickenham, London. Expert coaches, beginner to competitive training programs.",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Twickenham",
-      "addressLocality": "London",
-      "addressRegion": "Greater London",
-      "postalCode": "TW1",
-      "addressCountry": "GB"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "51.4479",
-      "longitude": "-0.3260"
-    },
-    "telephone": "+44-20-1234-5678",
-    "email": "info@brunswickboxing.co.uk",
-    "priceRange": "££",
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "06:00",
-        "closes": "22:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Saturday", "Sunday"],
-        "opens": "08:00",
-        "closes": "20:00"
-      }
-    ],
-    "sameAs": [
-      "https://www.facebook.com/brunswickboxing",
-      "https://www.instagram.com/brunswickboxing"
-    ]
-  };
-
   return (
-    <div className="min-h-screen bg-background">
-      {/* Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border" role="navigation" aria-label="Main navigation">
-        <div className="container mx-auto px-6">
-          <div className="flex items-center justify-between h-16">
-            <h2 className="font-display text-2xl font-bold">BRUNSWICK BOXING</h2>
-            
-            {/* Desktop Menu */}
-            <ul className="hidden md:flex items-center space-x-8">
-              <li><button onClick={() => scrollToSection('programs')} className="text-foreground hover:text-primary transition-colors font-medium">Programs</button></li>
-              <li><button onClick={() => scrollToSection('trainers')} className="text-foreground hover:text-primary transition-colors font-medium">Trainers</button></li>
-              <li><button onClick={() => scrollToSection('pricing')} className="text-foreground hover:text-primary transition-colors font-medium">Pricing</button></li>
-              <li><button onClick={() => scrollToSection('contact')} className="text-foreground hover:text-primary transition-colors font-medium">Contact</button></li>
-              <li><Button onClick={() => scrollToSection('pricing')} size="sm">Book Free Class</Button></li>
-            </ul>
+    <>
+      <Helmet>
+        <title>Brunswick Boxing - Professional Boxing Gym in Twickenham, London</title>
+        <meta name="description" content="Premier boxing gym in Twickenham, London. Professional boxing training, fitness classes, expert coaches. Beginner to competitive level. Book your free class today!" />
+        <meta name="keywords" content="boxing gym Twickenham, boxing classes London, professional boxing training, boxing fitness, boxing coaches, learn boxing Twickenham" />
+        <link rel="canonical" href="https://brunswickboxing.co.uk/" />
+      </Helmet>
 
-            {/* Mobile Menu Button */}
-            <button 
-              className="md:hidden p-2"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle mobile menu"
-              aria-expanded={mobileMenuOpen}
-            >
-              {mobileMenuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
-            </button>
-          </div>
-
-          {/* Mobile Menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden py-4 space-y-3 border-t border-border">
-              <button onClick={() => scrollToSection('programs')} className="block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium">Programs</button>
-              <button onClick={() => scrollToSection('trainers')} className="block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium">Trainers</button>
-              <button onClick={() => scrollToSection('pricing')} className="block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium">Pricing</button>
-              <button onClick={() => scrollToSection('contact')} className="block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium">Contact</button>
-              <Button onClick={() => scrollToSection('pricing')} className="w-full">Book Free Class</Button>
-            </div>
-          )}
-        </div>
-      </nav>
+      <div className="min-h-screen bg-background">
+        <Navigation />
 
       {/* Hero Section */}
       <header className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
@@ -126,11 +42,11 @@ const Index = () => {
             Master the sweet science. Train with professional boxing coaches. Step into the ring.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
-            <Button size="lg" className="bg-gradient-hero text-lg px-8 py-6 font-bold hover:shadow-glow transition-all" aria-label="Book your free boxing class">
-              BOOK FREE BOXING CLASS
+            <Button asChild size="lg" className="bg-gradient-hero text-lg px-8 py-6 font-bold hover:shadow-glow transition-all" aria-label="Book your free boxing class">
+              <Link to="/pricing">BOOK FREE BOXING CLASS</Link>
             </Button>
-            <Button size="lg" variant="secondary" className="text-lg px-8 py-6 font-bold" onClick={() => scrollToSection('programs')} aria-label="View our boxing programs">
-              VIEW BOXING PROGRAMS
+            <Button asChild size="lg" variant="secondary" className="text-lg px-8 py-6 font-bold" aria-label="View our boxing programs">
+              <Link to="/programs">VIEW BOXING PROGRAMS</Link>
             </Button>
           </div>
         </div>
@@ -193,7 +109,9 @@ const Index = () => {
                   </li>
                 ))}
               </ul>
-              <Button variant="secondary" className="w-full font-bold" aria-label={`Learn more about ${program.title}`}>Learn More</Button>
+              <Button asChild variant="secondary" className="w-full font-bold" aria-label={`Learn more about ${program.title}`}>
+                <Link to="/programs">Learn More</Link>
+              </Button>
             </article>
           ))}
         </div>
@@ -255,7 +173,10 @@ const Index = () => {
                   </li>
                 ))}
               </ul>
-              <Button className={`w-full font-bold ${plan.popular ? 'bg-gradient-hero' : ''}`} aria-label={`Get started with ${plan.name} plan for £${plan.price} per month`}>
+              <Button 
+                className={`w-full font-bold ${plan.popular ? 'bg-gradient-hero' : ''}`}
+                aria-label={`Get started with ${plan.name} plan for £${plan.price} per month`}
+              >
                 GET STARTED
               </Button>
             </article>
@@ -271,47 +192,15 @@ const Index = () => {
           <p className="text-xl mb-8 max-w-2xl mx-auto text-primary-foreground/90">
             Start your boxing journey at Brunswick Boxing. First boxing class completely free.
           </p>
-          <Button size="lg" variant="secondary" className="text-lg px-8 py-6 font-bold">
-            BOOK FREE BOXING CLASS
+          <Button asChild size="lg" variant="secondary" className="text-lg px-8 py-6 font-bold">
+            <Link to="/pricing">BOOK FREE BOXING CLASS</Link>
           </Button>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer id="contact" className="py-12 bg-secondary/50 border-t border-border" role="contentinfo">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h3 className="font-display text-2xl mb-4">BRUNSWICK BOXING</h3>
-              <p className="text-muted-foreground text-sm">Twickenham&apos;s premier boxing gym since 2009</p>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Hours</h4>
-              <p className="text-muted-foreground text-sm">
-                <time>Mon-Fri: 6am - 10pm</time><br/>
-                <time>Sat-Sun: 8am - 8pm</time>
-              </p>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Location</h4>
-              <address className="text-muted-foreground text-sm not-italic">
-                Twickenham<br/>London, UK
-              </address>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Contact</h4>
-              <p className="text-muted-foreground text-sm">
-                <a href="mailto:info@brunswickboxing.co.uk" className="hover:text-primary transition-colors">info@brunswickboxing.co.uk</a><br/>
-                <a href="tel:+442012345678" className="hover:text-primary transition-colors">020 1234 5678</a>
-              </p>
-            </div>
-          </div>
-          <div className="border-t border-border pt-8 text-center text-muted-foreground text-sm">
-            © 2024 Brunswick Boxing. All rights reserved.
-          </div>
-        </div>
-      </footer>
-    </div>
+      <Footer />
+      </div>
+    </>
   );
 };
 
