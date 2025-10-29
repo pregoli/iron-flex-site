@@ -315,57 +315,146 @@ const Index = () => {
         {/* Pricing Section */}
         <section id="pricing" className="py-24 bg-secondary/50">
           <div className="container mx-auto px-6">
-            <h2 className="font-display text-5xl md:text-6xl text-center mb-4">MEMBERSHIP PLANS</h2>
-            <p className="text-center text-muted-foreground mb-16 text-lg">Invest in yourself today</p>
+            <h2 className="font-display text-5xl md:text-6xl text-center mb-4">PRICING</h2>
+            <p className="text-center text-muted-foreground mb-16 text-lg">Affordable boxing for everyone</p>
             
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {[
-                { name: "Basic", price: "45", features: ["Boxing gym access", "Group boxing classes", "Heavy bags & speed bags", "Locker room"] },
-                { name: "Pro", price: "89", features: ["Everything in Basic", "2 private sessions/month", "Sparring access", "Boxing gloves included"], popular: true },
-                { name: "Elite", price: "179", features: ["Everything in Pro", "Unlimited coaching", "Fight preparation", "Competition support"] }
-              ].map((plan, i) => (
-                <Card key={i} className={`p-8 bg-gradient-card border-border hover:shadow-card transition-all animate-fade-in ${plan.popular ? 'border-primary shadow-glow scale-105' : ''}`} style={{ animationDelay: `${i * 0.15}s` }}>
-                  {plan.popular && (
-                    <Badge className="bg-gradient-hero text-primary-foreground text-xs font-bold mb-4">
-                      MOST POPULAR
-                    </Badge>
-                  )}
-                  <h3 className="font-display text-3xl mb-2">{plan.name}</h3>
-                  <div className="mb-6">
-                    <span className="font-display text-5xl text-primary">£{plan.price}</span>
-                    <span className="text-muted-foreground">/month</span>
+            <div className="max-w-5xl mx-auto">
+              {/* Group Training Options */}
+              <div className="grid md:grid-cols-2 gap-8 mb-12">
+                <Card className="p-8 bg-gradient-card border-border hover:shadow-card transition-all">
+                  <div className="text-center mb-6">
+                    <h3 className="font-display text-3xl mb-2">Drop-In Session</h3>
+                    <p className="text-muted-foreground text-sm">Pay as you go</p>
                   </div>
-                  <ul className="space-y-3 mb-8">
-                    {plan.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-sm">
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2"></div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button onClick={() => scrollToSection('contact')} className={`w-full font-bold ${plan.popular ? 'bg-gradient-hero' : ''}`}>
-                    GET STARTED
+                  <div className="text-center mb-6">
+                    <span className="font-display text-6xl text-primary">£5</span>
+                    <p className="text-muted-foreground mt-2">per 2-hour session</p>
+                  </div>
+                  <div className="space-y-3 mb-8">
+                    <div className="flex items-start gap-2 text-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2"></div>
+                      <span>2-hour training session</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2"></div>
+                      <span>Monday, Wednesday, Friday</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2"></div>
+                      <span>Full gym access during session</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2"></div>
+                      <span>No commitment required</span>
+                    </div>
+                  </div>
+                  <Button onClick={() => scrollToSection('contact')} variant="secondary" className="w-full font-bold">
+                    Come Train
                   </Button>
                 </Card>
-              ))}
-            </div>
 
-            <div className="mt-16 text-center">
-              <div className="inline-block">
-                <Badge className="mb-4 bg-primary/20 text-primary border border-primary">
-                  ADDITIONAL TRAINING OPTION
-                </Badge>
-                <Card className="p-8 bg-gradient-card border-border max-w-md">
-                  <h3 className="font-display text-2xl mb-3">Personal Training</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Get focused one-on-one coaching from our qualified England Boxing coaches
-                  </p>
-                  <div className="flex items-baseline justify-center gap-2 mb-6">
+                <Card className="p-8 bg-gradient-card border-primary shadow-glow scale-105 relative overflow-hidden">
+                  <Badge className="absolute top-4 right-4 bg-gradient-hero text-primary-foreground">
+                    BEST VALUE
+                  </Badge>
+                  <div className="text-center mb-6">
+                    <h3 className="font-display text-3xl mb-2">Monthly Pass</h3>
+                    <p className="text-muted-foreground text-sm">Unlimited training</p>
+                  </div>
+                  <div className="text-center mb-6">
+                    <span className="font-display text-6xl text-primary">£30</span>
+                    <p className="text-muted-foreground mt-2">per month</p>
+                  </div>
+                  <div className="space-y-3 mb-8">
+                    <div className="flex items-start gap-2 text-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2"></div>
+                      <span><strong>Unlimited sessions</strong> for the month</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2"></div>
+                      <span>3 sessions per week (Mon/Wed/Fri)</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2"></div>
+                      <span>2 hours per session</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2"></div>
+                      <span>Save over 40% vs drop-in</span>
+                    </div>
+                  </div>
+                  <Button onClick={() => scrollToSection('contact')} className="w-full font-bold bg-gradient-hero">
+                    Get Monthly Pass
+                  </Button>
+                </Card>
+              </div>
+
+              {/* Personal Training */}
+              <div className="text-center mb-8">
+                <h3 className="font-display text-3xl mb-2">Personal Training</h3>
+                <p className="text-muted-foreground">One-on-one coaching for focused development</p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                <Card className="p-8 bg-gradient-card border-border">
+                  <div className="flex items-center gap-3 mb-6">
+                    <Users className="w-8 h-8 text-primary" />
+                    <div>
+                      <h4 className="font-display text-2xl">With Coach</h4>
+                      <p className="text-sm text-muted-foreground">Qualified England Boxing coach</p>
+                    </div>
+                  </div>
+                  <div className="mb-6">
                     <span className="font-display text-5xl text-primary">£30</span>
                     <span className="text-muted-foreground">/hour</span>
                   </div>
-                  <Button onClick={() => scrollToSection('contact')} variant="secondary" className="w-full font-bold">
-                    Contact Us for Booking
+                  <div className="space-y-2 mb-6">
+                    <div className="flex items-center gap-2 text-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                      <span>1-hour private session</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                      <span>Personalized training plan</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                      <span>Technique focus</span>
+                    </div>
+                  </div>
+                  <Button onClick={() => scrollToSection('contact')} variant="outline" className="w-full font-bold">
+                    Book Session
+                  </Button>
+                </Card>
+
+                <Card className="p-8 bg-gradient-card border-border">
+                  <div className="flex items-center gap-3 mb-6">
+                    <Trophy className="w-8 h-8 text-primary" />
+                    <div>
+                      <h4 className="font-display text-2xl">With Head Coach</h4>
+                      <p className="text-sm text-muted-foreground">Elite level coaching</p>
+                    </div>
+                  </div>
+                  <div className="mb-6">
+                    <span className="font-display text-5xl text-primary">£35</span>
+                    <span className="text-muted-foreground">/hour</span>
+                  </div>
+                  <div className="space-y-2 mb-6">
+                    <div className="flex items-center gap-2 text-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                      <span>1-hour private session</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                      <span>Advanced technique training</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                      <span>Competition preparation</span>
+                    </div>
+                  </div>
+                  <Button onClick={() => scrollToSection('contact')} variant="outline" className="w-full font-bold">
+                    Book Session
                   </Button>
                 </Card>
               </div>
