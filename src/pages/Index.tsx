@@ -25,10 +25,10 @@ const Index = () => {
     "description": "35 years of boxing excellence in Twickenham. Fully insured & affiliated to England Boxing with qualified coaches. Ages 9-90 welcome.",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Twickenham",
-      "addressLocality": "London",
-      "addressRegion": "Greater London",
-      "postalCode": "TW1",
+      "streetAddress": "Clarendon Crescent",
+      "addressLocality": "Twickenham",
+      "addressRegion": "Richmond upon Thames",
+      "postalCode": "TW2 5LN",
       "addressCountry": "GB"
     },
     "geo": {
@@ -551,21 +551,23 @@ const Index = () => {
                       <h3 className="font-bold text-lg">Location</h3>
                     </div>
                     <address className="text-sm not-italic mb-4">
-                      Twickenham<br/>
-                      London, UK
+                      Clarendon Crescent<br/>
+                      Richmond upon Thames<br/>
+                      Twickenham, TW2 5LN<br/>
+                      United Kingdom
                     </address>
                     
                     {/* Map Embed */}
                     <div className="mb-4 rounded-lg overflow-hidden border border-border">
                       <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39774.86924927376!2d-0.3583932!3d51.4479!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48760db7f9c3e5e9%3A0x8e9c3e84f9f1e2f9!2sTwickenham%2C%20London%2C%20UK!5e0!3m2!1sen!2suk!4v1234567890"
+                        src="https://maps.google.com/maps?q=Clarendon+Crescent,+Richmond+upon+Thames,+Twickenham,+TW2+5LN,+United+Kingdom&output=embed"
                         width="100%"
                         height="200"
                         style={{ border: 0 }}
                         allowFullScreen
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
-                        title="Brunswick Boxing Location"
+                        title="Brunswick Boxing Location - Clarendon Crescent, Twickenham"
                       />
                     </div>
                     
