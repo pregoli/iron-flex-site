@@ -148,7 +148,7 @@ const Index = () => {
               BRUNSWICK BOXING
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-muted-foreground max-w-2xl mx-auto font-medium">
-              Twickenham ABC - England Boxing Affiliated. Junior to Senior Champions. Ages 9-90 Welcome.
+              Twickenham ABC - England Boxing Affiliated. Junior (9-17) & Adult (18+) Programs.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
               <Button size="lg" onClick={() => scrollToSection('contact')} className="bg-gradient-hero text-lg px-8 py-6 font-bold hover:shadow-glow transition-all">
@@ -246,44 +246,88 @@ const Index = () => {
         <section id="programs" className="py-24 bg-secondary/50">
           <div className="container mx-auto px-6">
             <h2 className="font-display text-5xl md:text-6xl text-center mb-4">BOXING PROGRAMS</h2>
-            <p className="text-center text-muted-foreground mb-16 text-lg">From beginner to championship level</p>
+            <p className="text-center text-muted-foreground mb-16 text-lg">Programs for all ages - Juniors (9-17) & Adults (18+)</p>
             
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: Dumbbell,
-                  title: "Beginner Boxing",
-                  description: "Learn proper stance, jab, cross, and hooks. Master boxing fundamentals with certified England Boxing coaches.",
-                  features: ["Boxing stance & footwork", "Basic punch combinations", "Speed bag & heavy bag work"]
-                },
-                {
-                  icon: Users,
-                  title: "Boxing Fitness",
-                  description: "High-intensity boxing workouts. Learn to throw punches like a pro while getting in peak shape.",
-                  features: ["Cardio boxing rounds", "Pad work with trainers", "Group training sessions"]
-                },
-                {
-                  icon: Trophy,
-                  title: "Competitive Boxing",
-                  description: "Train for amateur boxing competitions. Championship-level coaching from experienced England Boxing coaches.",
-                  features: ["Ring sparring sessions", "Competition preparation", "ABA championship training"]
-                }
-              ].map((program, i) => (
-                <Card key={i} className="p-8 bg-gradient-card border-border hover:border-primary transition-all hover:shadow-card group animate-fade-in" style={{ animationDelay: `${i * 0.15}s` }}>
-                  <program.icon className="w-12 h-12 text-primary mb-6 group-hover:scale-110 transition-transform" aria-hidden="true" />
-                  <h3 className="font-display text-3xl mb-4">{program.title}</h3>
-                  <p className="text-muted-foreground mb-6">{program.description}</p>
-                  <ul className="space-y-2 mb-6">
-                    {program.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-sm">
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button variant="secondary" onClick={() => scrollToSection('contact')} className="w-full font-bold">Get Started</Button>
-                </Card>
-              ))}
+            {/* Junior Programs */}
+            <div className="mb-16">
+              <div className="flex items-center justify-center gap-3 mb-8">
+                <Badge className="bg-gradient-hero text-lg px-4 py-2">JUNIOR PROGRAMS (Ages 9-17)</Badge>
+              </div>
+              <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                {[
+                  {
+                    icon: Users,
+                    title: "Junior Boxing",
+                    description: "Dedicated sessions for young boxers aged 9-17. Learn fundamentals in a safe, supervised environment.",
+                    features: ["Age-appropriate training", "Fundamentals & technique", "Fitness & discipline", "Mon & Wed 5pm-6pm"]
+                  },
+                  {
+                    icon: Trophy,
+                    title: "Junior Competition",
+                    description: "For juniors ready to compete. Train for amateur boxing competitions with championship-level coaching.",
+                    features: ["Competition preparation", "Advanced techniques", "Ring sparring", "England Boxing competitions"]
+                  }
+                ].map((program, i) => (
+                  <Card key={i} className="p-8 bg-gradient-card border-border hover:border-primary transition-all hover:shadow-card group animate-fade-in" style={{ animationDelay: `${i * 0.15}s` }}>
+                    <program.icon className="w-12 h-12 text-primary mb-6 group-hover:scale-110 transition-transform" aria-hidden="true" />
+                    <h3 className="font-display text-3xl mb-4">{program.title}</h3>
+                    <p className="text-muted-foreground mb-6">{program.description}</p>
+                    <ul className="space-y-2 mb-6">
+                      {program.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-center gap-2 text-sm">
+                          <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <Button variant="secondary" onClick={() => scrollToSection('contact')} className="w-full font-bold">Get Started</Button>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Adult Programs */}
+            <div>
+              <div className="flex items-center justify-center gap-3 mb-8">
+                <Badge className="bg-primary text-primary-foreground text-lg px-4 py-2">ADULT PROGRAMS (Ages 18+)</Badge>
+              </div>
+              <div className="grid md:grid-cols-3 gap-8">
+                {[
+                  {
+                    icon: Dumbbell,
+                    title: "Beginner Boxing",
+                    description: "New to boxing? Learn proper stance, jab, cross, and hooks. Master fundamentals with certified coaches.",
+                    features: ["Boxing stance & footwork", "Basic punch combinations", "Speed bag & heavy bag work"]
+                  },
+                  {
+                    icon: Users,
+                    title: "Boxing Fitness",
+                    description: "High-intensity boxing workouts. Get in peak shape while learning proper technique.",
+                    features: ["Cardio boxing rounds", "Pad work with trainers", "Mon/Wed/Fri 6pm-8pm"]
+                  },
+                  {
+                    icon: Trophy,
+                    title: "Competitive Boxing",
+                    description: "Train for amateur boxing competitions with championship-level coaching.",
+                    features: ["Ring sparring sessions", "Competition preparation", "ABA championship training"]
+                  }
+                ].map((program, i) => (
+                  <Card key={i} className="p-8 bg-gradient-card border-border hover:border-primary transition-all hover:shadow-card group animate-fade-in" style={{ animationDelay: `${i * 0.15}s` }}>
+                    <program.icon className="w-12 h-12 text-primary mb-6 group-hover:scale-110 transition-transform" aria-hidden="true" />
+                    <h3 className="font-display text-3xl mb-4">{program.title}</h3>
+                    <p className="text-muted-foreground mb-6">{program.description}</p>
+                    <ul className="space-y-2 mb-6">
+                      {program.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-center gap-2 text-sm">
+                          <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <Button variant="secondary" onClick={() => scrollToSection('contact')} className="w-full font-bold">Get Started</Button>
+                  </Card>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -559,32 +603,53 @@ const Index = () => {
                       <Clock className="w-6 h-6 text-primary" />
                       <h3 className="font-bold text-lg">Weekly Schedule</h3>
                     </div>
-                    <div className="text-sm space-y-3">
+                    <div className="text-sm space-y-4">
                       <div>
-                        <p className="font-semibold">Monday</p>
-                        <p className="text-muted-foreground">5pm-6pm: Juniors Session</p>
-                        <p className="text-muted-foreground">6pm-8pm: General Boxing & Fitness</p>
+                        <p className="font-semibold text-base mb-2">Monday</p>
+                        <div className="pl-3 space-y-1">
+                          <p className="text-muted-foreground">
+                            <Badge variant="outline" className="mr-2 text-xs">JUNIORS 9-17</Badge>
+                            5pm-6pm
+                          </p>
+                          <p className="text-muted-foreground">
+                            <Badge variant="outline" className="mr-2 text-xs">ADULTS 18+</Badge>
+                            6pm-8pm
+                          </p>
+                        </div>
                       </div>
                       <div>
-                        <p className="font-semibold">Tuesday</p>
-                        <p className="text-muted-foreground">CLOSED</p>
+                        <p className="font-semibold text-base">Tuesday</p>
+                        <p className="text-muted-foreground pl-3">CLOSED</p>
                       </div>
                       <div>
-                        <p className="font-semibold">Wednesday</p>
-                        <p className="text-muted-foreground">5pm-6pm: Juniors Session</p>
-                        <p className="text-muted-foreground">6pm-8pm: General Boxing & Fitness</p>
+                        <p className="font-semibold text-base mb-2">Wednesday</p>
+                        <div className="pl-3 space-y-1">
+                          <p className="text-muted-foreground">
+                            <Badge variant="outline" className="mr-2 text-xs">JUNIORS 9-17</Badge>
+                            5pm-6pm
+                          </p>
+                          <p className="text-muted-foreground">
+                            <Badge variant="outline" className="mr-2 text-xs">ADULTS 18+</Badge>
+                            6pm-8pm
+                          </p>
+                        </div>
                       </div>
                       <div>
-                        <p className="font-semibold">Thursday</p>
-                        <p className="text-muted-foreground">CLOSED</p>
+                        <p className="font-semibold text-base">Thursday</p>
+                        <p className="text-muted-foreground pl-3">CLOSED</p>
                       </div>
                       <div>
-                        <p className="font-semibold">Friday</p>
-                        <p className="text-muted-foreground">6pm-8pm: General Boxing & Fitness</p>
+                        <p className="font-semibold text-base mb-2">Friday</p>
+                        <div className="pl-3">
+                          <p className="text-muted-foreground">
+                            <Badge variant="outline" className="mr-2 text-xs">ADULTS 18+</Badge>
+                            6pm-8pm
+                          </p>
+                        </div>
                       </div>
                       <div>
-                        <p className="font-semibold">Saturday & Sunday</p>
-                        <p className="text-muted-foreground">CLOSED</p>
+                        <p className="font-semibold text-base">Saturday & Sunday</p>
+                        <p className="text-muted-foreground pl-3">CLOSED</p>
                       </div>
                     </div>
                   </Card>
