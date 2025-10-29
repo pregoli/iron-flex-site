@@ -5,6 +5,8 @@ import { Dumbbell, Users, Trophy, Menu, X, Clock, MapPin, Phone, Mail, AlertCirc
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import heroImage from "@/assets/hero-boxing.jpg";
+import coachPud from "@/assets/coach-pud.png";
+import coachJerry from "@/assets/coach-jerry.png";
 
 const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -293,12 +295,16 @@ const Index = () => {
           
           <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
             {[
-              { name: "Mike Rodriguez", role: "Head Boxing Coach", exp: "England Boxing Certified" },
-              { name: "Sarah Chen", role: "Boxing Coach", exp: "England Boxing Certified" }
+              { name: "Pud", role: "Head Boxing Coach", exp: "England Boxing Certified", image: coachPud },
+              { name: "Jerry", role: "Boxing Coach", exp: "England Boxing Certified", image: coachJerry }
             ].map((trainer, i) => (
               <Card key={i} className="p-6 bg-gradient-card border-border hover:border-primary transition-all group animate-scale-in" style={{ animationDelay: `${i * 0.1}s` }}>
-                <div className="aspect-square bg-muted rounded-lg mb-4 flex items-center justify-center group-hover:scale-105 transition-transform" role="img" aria-label={`${trainer.name} - ${trainer.role}`}>
-                  <Users className="w-16 h-16 text-primary" aria-hidden="true" />
+                <div className="aspect-square bg-muted rounded-lg mb-4 overflow-hidden group-hover:scale-105 transition-transform">
+                  <img 
+                    src={trainer.image} 
+                    alt={`${trainer.name} - ${trainer.role}`}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="font-display text-2xl mb-1">{trainer.name}</h3>
                 <p className="text-primary text-sm font-semibold mb-1">{trainer.role}</p>
