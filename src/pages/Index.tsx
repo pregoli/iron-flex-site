@@ -448,12 +448,12 @@ const Index = () => {
         <section className="py-24 bg-gradient-hero">
           <div className="container mx-auto px-6 text-center">
             <div className="text-6xl mb-6">🥊</div>
-            <h2 className="font-display text-5xl md:text-6xl mb-6 text-primary-foreground">STEP INTO THE RING</h2>
+            <h2 className="font-display text-5xl md:text-6xl mb-6 text-primary-foreground">READY TO START?</h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto text-primary-foreground/90">
-              Join 35 years of boxing tradition at Twickenham Brunswick ABC
+              Fill out the form below and we&apos;ll get back to you as soon as possible
             </p>
             <Button size="lg" variant="secondary" onClick={() => scrollToSection('contact')} className="text-lg px-8 py-6 font-bold">
-              GET STARTED TODAY
+              CONTACT US NOW
             </Button>
           </div>
         </section>
@@ -461,51 +461,123 @@ const Index = () => {
         {/* Contact/Footer Section */}
         <footer id="contact" className="py-16 bg-secondary/50 border-t border-border" role="contentinfo">
           <div className="container mx-auto px-6">
-            <h2 className="font-display text-4xl text-center mb-12">GET IN TOUCH</h2>
+            <h2 className="font-display text-4xl text-center mb-4">GET IN TOUCH</h2>
+            <p className="text-center text-muted-foreground mb-12">Ready to start your boxing journey? Contact us today</p>
             
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
-              <Card className="p-6 bg-gradient-card border-border">
-                <div className="flex items-center gap-3 mb-4">
-                  <Clock className="w-6 h-6 text-primary" />
-                  <h3 className="font-bold text-lg">Opening Hours</h3>
-                </div>
-                <div className="text-sm space-y-2">
-                  <p><time className="font-medium">Monday - Friday:</time> 6am - 10pm</p>
-                  <p><time className="font-medium">Saturday - Sunday:</time> 8am - 8pm</p>
-                </div>
-              </Card>
+            <div className="max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-8 mb-12">
+                {/* Contact Form */}
+                <Card className="p-8 bg-gradient-card border-border">
+                  <h3 className="font-display text-2xl mb-6">Send us a Message</h3>
+                  <form action="https://formsubmit.co/info@brunswickboxing.co.uk" method="POST" className="space-y-4">
+                    {/* FormSubmit Configuration */}
+                    <input type="hidden" name="_subject" value="New enquiry from Brunswick Boxing website" />
+                    <input type="hidden" name="_captcha" value="false" />
+                    <input type="hidden" name="_template" value="table" />
+                    
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium mb-2">Your Name</label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        maxLength={100}
+                        className="w-full px-4 py-2 rounded-md border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                        placeholder="John Doe"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium mb-2">Your Email</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        maxLength={255}
+                        className="w-full px-4 py-2 rounded-md border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                        placeholder="john@example.com"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-medium mb-2">Phone Number (Optional)</label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        maxLength={20}
+                        className="w-full px-4 py-2 rounded-md border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                        placeholder="020 1234 5678"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        required
+                        maxLength={1000}
+                        rows={4}
+                        className="w-full px-4 py-2 rounded-md border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"
+                        placeholder="Tell us about your boxing goals or ask any questions..."
+                      />
+                    </div>
+                    
+                    <Button type="submit" className="w-full font-bold text-lg py-6 bg-gradient-hero">
+                      SEND MESSAGE
+                    </Button>
+                  </form>
+                </Card>
 
-              <Card className="p-6 bg-gradient-card border-border">
-                <div className="flex items-center gap-3 mb-4">
-                  <MapPin className="w-6 h-6 text-primary" />
-                  <h3 className="font-bold text-lg">Location</h3>
-                </div>
-                <address className="text-sm not-italic mb-4">
-                  Twickenham<br/>
-                  London, UK
-                </address>
-                <div className="bg-destructive/10 border-l-4 border-destructive p-3 rounded">
-                  <p className="text-xs font-bold text-destructive mb-1">⚠️ PARKING NOTICE</p>
-                  <p className="text-xs">Car park is for drop-off/pick-up ONLY. Please do not park.</p>
-                </div>
-              </Card>
+                {/* Contact Info */}
+                <div className="space-y-6">
+                  <Card className="p-6 bg-gradient-card border-border">
+                    <div className="flex items-center gap-3 mb-4">
+                      <Clock className="w-6 h-6 text-primary" />
+                      <h3 className="font-bold text-lg">Opening Hours</h3>
+                    </div>
+                    <div className="text-sm space-y-2">
+                      <p><time className="font-medium">Monday - Friday:</time> 6am - 10pm</p>
+                      <p><time className="font-medium">Saturday - Sunday:</time> 8am - 8pm</p>
+                    </div>
+                  </Card>
 
-              <Card className="p-6 bg-gradient-card border-border">
-                <div className="flex items-center gap-3 mb-4">
-                  <Mail className="w-6 h-6 text-primary" />
-                  <h3 className="font-bold text-lg">Contact Us</h3>
+                  <Card className="p-6 bg-gradient-card border-border">
+                    <div className="flex items-center gap-3 mb-4">
+                      <MapPin className="w-6 h-6 text-primary" />
+                      <h3 className="font-bold text-lg">Location</h3>
+                    </div>
+                    <address className="text-sm not-italic mb-4">
+                      Twickenham<br/>
+                      London, UK
+                    </address>
+                    <div className="bg-destructive/10 border-l-4 border-destructive p-3 rounded">
+                      <p className="text-xs font-bold text-destructive mb-1">⚠️ PARKING NOTICE</p>
+                      <p className="text-xs">Car park is for drop-off/pick-up ONLY. Please do not park.</p>
+                    </div>
+                  </Card>
+
+                  <Card className="p-6 bg-gradient-card border-border">
+                    <div className="flex items-center gap-3 mb-4">
+                      <Mail className="w-6 h-6 text-primary" />
+                      <h3 className="font-bold text-lg">Contact Us</h3>
+                    </div>
+                    <div className="text-sm space-y-3">
+                      <a href="mailto:info@brunswickboxing.co.uk" className="hover:text-primary transition-colors flex items-center gap-2">
+                        <Mail className="w-4 h-4" />
+                        info@brunswickboxing.co.uk
+                      </a>
+                      <a href="tel:+442012345678" className="hover:text-primary transition-colors flex items-center gap-2">
+                        <Phone className="w-4 h-4" />
+                        020 1234 5678
+                      </a>
+                    </div>
+                  </Card>
                 </div>
-                <div className="text-sm space-y-3">
-                  <a href="mailto:info@brunswickboxing.co.uk" className="hover:text-primary transition-colors flex items-center gap-2">
-                    <Mail className="w-4 h-4" />
-                    info@brunswickboxing.co.uk
-                  </a>
-                  <a href="tel:+442012345678" className="hover:text-primary transition-colors flex items-center gap-2">
-                    <Phone className="w-4 h-4" />
-                    020 1234 5678
-                  </a>
-                </div>
-              </Card>
+              </div>
             </div>
 
             <div className="border-t border-border pt-8">
