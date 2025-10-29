@@ -1,13 +1,61 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Dumbbell, Users, Trophy, Clock } from "lucide-react";
+import { Dumbbell, Users, Trophy, Menu, X } from "lucide-react";
+import { useState } from "react";
 import heroImage from "@/assets/hero-boxing.jpg";
 
 const Index = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setMobileMenuOpen(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+        <div className="container mx-auto px-6">
+          <div className="flex items-center justify-between h-16">
+            <div className="font-display text-2xl font-bold">BRUNSWICK BOXING</div>
+            
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center space-x-8">
+              <button onClick={() => scrollToSection('programs')} className="text-foreground hover:text-primary transition-colors font-medium">Programs</button>
+              <button onClick={() => scrollToSection('trainers')} className="text-foreground hover:text-primary transition-colors font-medium">Trainers</button>
+              <button onClick={() => scrollToSection('pricing')} className="text-foreground hover:text-primary transition-colors font-medium">Pricing</button>
+              <button onClick={() => scrollToSection('contact')} className="text-foreground hover:text-primary transition-colors font-medium">Contact</button>
+              <Button onClick={() => scrollToSection('pricing')} size="sm">Book Free Class</Button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button 
+              className="md:hidden p-2"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X /> : <Menu />}
+            </button>
+          </div>
+
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden py-4 space-y-3 border-t border-border">
+              <button onClick={() => scrollToSection('programs')} className="block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium">Programs</button>
+              <button onClick={() => scrollToSection('trainers')} className="block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium">Trainers</button>
+              <button onClick={() => scrollToSection('pricing')} className="block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium">Pricing</button>
+              <button onClick={() => scrollToSection('contact')} className="block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium">Contact</button>
+              <Button onClick={() => scrollToSection('pricing')} className="w-full">Book Free Class</Button>
+            </div>
+          )}
+        </div>
+      </nav>
+
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
@@ -56,7 +104,7 @@ const Index = () => {
       </section>
 
       {/* Programs Section */}
-      <section className="py-24 container mx-auto px-6">
+      <section id="programs" className="py-24 container mx-auto px-6">
         <h2 className="font-display text-5xl md:text-6xl text-center mb-4">BOXING PROGRAMS</h2>
         <p className="text-center text-muted-foreground mb-16 text-lg">From beginner to championship level</p>
         
@@ -100,7 +148,7 @@ const Index = () => {
       </section>
 
       {/* Trainers Section */}
-      <section className="py-24 bg-secondary/50">
+      <section id="trainers" className="py-24 bg-secondary/50">
         <div className="container mx-auto px-6">
           <h2 className="font-display text-5xl md:text-6xl text-center mb-4">BOXING COACHES</h2>
           <p className="text-center text-muted-foreground mb-16 text-lg">Certified boxing trainers with professional fight experience</p>
@@ -126,7 +174,7 @@ const Index = () => {
       </section>
 
       {/* Pricing Section */}
-      <section className="py-24 container mx-auto px-6">
+      <section id="pricing" className="py-24 container mx-auto px-6">
         <h2 className="font-display text-5xl md:text-6xl text-center mb-4">MEMBERSHIP PLANS</h2>
         <p className="text-center text-muted-foreground mb-16 text-lg">Invest in yourself today</p>
         
@@ -178,7 +226,7 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 bg-secondary/50 border-t border-border">
+      <footer id="contact" className="py-12 bg-secondary/50 border-t border-border">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
