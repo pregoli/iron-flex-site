@@ -143,6 +143,24 @@ const Index = () => {
           </div>
         </header>
 
+        {/* Announcements Section */}
+        <section className="py-8 bg-primary/10 border-y border-primary/20">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <div className="flex items-start gap-4">
+                <AlertCircle className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="font-bold text-lg mb-2">📅 Club Update</h3>
+                  <p className="text-sm">
+                    <strong>Junior sessions are temporarily closed</strong> and will resume on Monday 8th September. 
+                    Adult sessions continue as normal. Contact us for more information.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Stats Section */}
         <section className="py-20 bg-secondary/50">
           <div className="container mx-auto px-6">
@@ -166,44 +184,58 @@ const Index = () => {
         <section id="about" className="py-24 container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-display text-5xl md:text-6xl text-center mb-4">ABOUT US</h2>
-            <p className="text-center text-muted-foreground mb-12 text-lg">England Boxing Affiliated Boxing Club</p>
+            <p className="text-center text-muted-foreground mb-12 text-lg">England Boxing Affiliated Championship Boxing Club</p>
             
-            <Card className="p-8 md:p-12 bg-gradient-card border-border">
-              <div className="space-y-6 text-lg">
-                <p>
-                  <strong>Twickenham Brunswick ABC</strong> has been running for <strong>35 years</strong> with a wide range of success from junior to senior ABA amateur champions. We are fully insured & affiliated to <strong>England Boxing</strong> with qualified England coaches.
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              <Card className="p-8 bg-gradient-card border-border">
+                <h3 className="font-display text-2xl mb-4">Our Heritage</h3>
+                <p className="text-muted-foreground mb-4">
+                  Since 1989, Twickenham Brunswick ABC has been at the heart of the local boxing community, 
+                  producing champions from junior to senior levels in ABA amateur competitions.
                 </p>
-                
-                <p>
-                  We welcome all ages from <strong>9 to 90</strong>. Any ability welcome with a friendly atmosphere. Fully equipped gym so if you are looking to box or just get fitter, come down and see how you like it!
+                <p className="text-muted-foreground">
+                  We are proud to be fully insured and affiliated with <strong className="text-foreground">England Boxing</strong>, 
+                  with all our coaches holding official England Boxing qualifications.
                 </p>
+              </Card>
 
-                <div className="bg-primary/10 border-l-4 border-primary p-6 rounded">
-                  <div className="flex items-start gap-3">
-                    <AlertCircle className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
-                    <div className="space-y-2">
-                      <p className="font-bold text-primary">IMPORTANT INFORMATION</p>
-                      <p className="text-sm">
-                        THE CAR PARK IS FOR DROP OFF OR PICK UP ONLY - PLEASE DO NOT PARK
-                      </p>
-                    </div>
-                  </div>
+              <Card className="p-8 bg-gradient-card border-border">
+                <h3 className="font-display text-2xl mb-4">Our Community</h3>
+                <p className="text-muted-foreground mb-4">
+                  As a registered charity run entirely by dedicated volunteers, we welcome boxers of all ages 
+                  (9 to 90) and abilities in a supportive, friendly atmosphere.
+                </p>
+                <p className="text-muted-foreground">
+                  Whether you&apos;re looking to compete or simply improve your fitness, our fully equipped gym 
+                  provides everything you need to achieve your goals.
+                </p>
+              </Card>
+            </div>
+
+            <Card className="p-8 bg-muted/30 border-border">
+              <h3 className="font-display text-2xl mb-6 text-center">Training Options</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-bold mb-3 flex items-center gap-2">
+                    <Users className="w-5 h-5 text-primary" />
+                    Group Sessions
+                  </h4>
+                  <p className="text-sm text-muted-foreground">
+                    Train alongside fellow boxers in our group sessions. As a volunteer-run charity, 
+                    our coaches work hard to support everyone, though busy periods may require patience.
+                  </p>
                 </div>
-
-                <div className="bg-muted/50 p-6 rounded-lg">
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Please be aware that Brunswick ABC is a charity run by volunteers. The coaches will do their best to help you train during the sessions but might not always get time as the gym can become busy.
+                <div>
+                  <h4 className="font-bold mb-3 flex items-center gap-2">
+                    <Trophy className="w-5 h-5 text-primary" />
+                    Personal Training
+                  </h4>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    Need focused, one-on-one attention? Private coaching sessions available at £30 per hour.
                   </p>
-                  <p className="font-semibold">
-                    If you need closer attention, one-hour personal training sessions are available for <span className="text-primary">£30</span>. Please email for details.
-                  </p>
-                </div>
-
-                <div className="bg-destructive/10 border border-destructive/20 p-6 rounded-lg">
-                  <p className="font-bold text-destructive mb-2">📅 UPDATE</p>
-                  <p className="text-sm">
-                    Junior sessions are closed until Monday 8th September.
-                  </p>
+                  <Button variant="outline" size="sm" onClick={() => scrollToSection('contact')}>
+                    Email for Details
+                  </Button>
                 </div>
               </div>
             </Card>
@@ -318,19 +350,25 @@ const Index = () => {
               ))}
             </div>
 
-            <div className="mt-12 text-center">
-              <Card className="inline-block p-6 bg-gradient-card border-border">
-                <p className="text-lg mb-2">
-                  <strong>Personal Training Sessions</strong>
-                </p>
-                <p className="text-muted-foreground mb-4">
-                  One-hour personal training with our qualified coaches
-                </p>
-                <p className="font-display text-4xl text-primary">£30<span className="text-lg text-muted-foreground">/hour</span></p>
-                <Button onClick={() => scrollToSection('contact')} variant="secondary" className="mt-4 font-bold">
-                  Email for Details
-                </Button>
-              </Card>
+            <div className="mt-16 text-center">
+              <div className="inline-block">
+                <Badge className="mb-4 bg-primary/20 text-primary border border-primary">
+                  ADDITIONAL TRAINING OPTION
+                </Badge>
+                <Card className="p-8 bg-gradient-card border-border max-w-md">
+                  <h3 className="font-display text-2xl mb-3">Personal Training</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Get focused one-on-one coaching from our qualified England Boxing coaches
+                  </p>
+                  <div className="flex items-baseline justify-center gap-2 mb-6">
+                    <span className="font-display text-5xl text-primary">£30</span>
+                    <span className="text-muted-foreground">/hour</span>
+                  </div>
+                  <Button onClick={() => scrollToSection('contact')} variant="secondary" className="w-full font-bold">
+                    Contact Us for Booking
+                  </Button>
+                </Card>
+              </div>
             </div>
           </div>
         </section>
@@ -350,35 +388,43 @@ const Index = () => {
         </section>
 
         {/* Contact/Footer Section */}
-        <footer id="contact" className="py-12 bg-secondary/50 border-t border-border" role="contentinfo">
+        <footer id="contact" className="py-16 bg-secondary/50 border-t border-border" role="contentinfo">
           <div className="container mx-auto px-6">
-            <div className="grid md:grid-cols-4 gap-8 mb-8">
-              <div>
-                <h3 className="font-display text-2xl mb-4">BRUNSWICK BOXING</h3>
-                <p className="text-muted-foreground text-sm">Twickenham ABC - 35 years of boxing excellence since 1989</p>
-              </div>
-              <div>
-                <h4 className="font-bold mb-4 flex items-center gap-2">
-                  <Clock className="w-4 h-4" />
-                  Hours
-                </h4>
-                <p className="text-muted-foreground text-sm">
-                  <time>Mon-Fri: 6am - 10pm</time><br/>
-                  <time>Sat-Sun: 8am - 8pm</time>
-                </p>
-              </div>
-              <div>
-                <h4 className="font-bold mb-4 flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
-                  Location
-                </h4>
-                <address className="text-muted-foreground text-sm not-italic">
-                  Twickenham<br/>London, UK
+            <h2 className="font-display text-4xl text-center mb-12">GET IN TOUCH</h2>
+            
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <Card className="p-6 bg-gradient-card border-border">
+                <div className="flex items-center gap-3 mb-4">
+                  <Clock className="w-6 h-6 text-primary" />
+                  <h3 className="font-bold text-lg">Opening Hours</h3>
+                </div>
+                <div className="text-sm space-y-2">
+                  <p><time className="font-medium">Monday - Friday:</time> 6am - 10pm</p>
+                  <p><time className="font-medium">Saturday - Sunday:</time> 8am - 8pm</p>
+                </div>
+              </Card>
+
+              <Card className="p-6 bg-gradient-card border-border">
+                <div className="flex items-center gap-3 mb-4">
+                  <MapPin className="w-6 h-6 text-primary" />
+                  <h3 className="font-bold text-lg">Location</h3>
+                </div>
+                <address className="text-sm not-italic mb-4">
+                  Twickenham<br/>
+                  London, UK
                 </address>
-              </div>
-              <div>
-                <h4 className="font-bold mb-4">Contact</h4>
-                <p className="text-muted-foreground text-sm space-y-2">
+                <div className="bg-destructive/10 border-l-4 border-destructive p-3 rounded">
+                  <p className="text-xs font-bold text-destructive mb-1">⚠️ PARKING NOTICE</p>
+                  <p className="text-xs">Car park is for drop-off/pick-up ONLY. Please do not park.</p>
+                </div>
+              </Card>
+
+              <Card className="p-6 bg-gradient-card border-border">
+                <div className="flex items-center gap-3 mb-4">
+                  <Mail className="w-6 h-6 text-primary" />
+                  <h3 className="font-bold text-lg">Contact Us</h3>
+                </div>
+                <div className="text-sm space-y-3">
                   <a href="mailto:info@brunswickboxing.co.uk" className="hover:text-primary transition-colors flex items-center gap-2">
                     <Mail className="w-4 h-4" />
                     info@brunswickboxing.co.uk
@@ -387,12 +433,17 @@ const Index = () => {
                     <Phone className="w-4 h-4" />
                     020 1234 5678
                   </a>
-                </p>
-              </div>
+                </div>
+              </Card>
             </div>
-            <div className="border-t border-border pt-8 text-center text-muted-foreground text-sm">
-              <p>© 2024 Brunswick Boxing. All rights reserved. Registered Charity.</p>
-              <p className="mt-2">Affiliated to England Boxing</p>
+
+            <div className="border-t border-border pt-8">
+              <div className="text-center space-y-2">
+                <h3 className="font-display text-2xl mb-3">BRUNSWICK BOXING</h3>
+                <p className="text-sm text-muted-foreground">Twickenham ABC • Established 1989</p>
+                <p className="text-sm text-muted-foreground">Registered Charity • England Boxing Affiliated</p>
+                <p className="text-xs text-muted-foreground mt-4">© 2024 Brunswick Boxing. All rights reserved.</p>
+              </div>
             </div>
           </div>
         </footer>
