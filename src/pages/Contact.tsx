@@ -12,7 +12,7 @@ const Contact = () => {
     <>
       <Helmet>
         <title>Contact Us - Brunswick Boxing Gym Twickenham | Get In Touch</title>
-        <meta name="description" content="Contact Brunswick Boxing in Twickenham. Visit us, call 020 1234 5678, or email info@brunswickboxing.co.uk. Book your free boxing class today!" />
+        <meta name="description" content="Contact Brunswick Boxing in Twickenham. Visit us, call 020 1234 5678, or email info@brunswickboxing.co.uk. Get started with boxing today!" />
         <meta name="keywords" content="contact boxing gym, Brunswick Boxing Twickenham, boxing gym location, boxing classes enquiry" />
         <link rel="canonical" href="https://brunswickboxing.co.uk/contact" />
       </Helmet>

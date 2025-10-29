@@ -53,7 +53,7 @@ export const Navigation = () => {
             </li>
             <li>
               <Button asChild size="sm">
-                <Link to="/pricing">Book Free Class</Link>
+                <Link to="/contact">Book a Class</Link>
               </Button>
             </li>
           </ul>
@@ -101,7 +101,7 @@ export const Navigation = () => {
               Contact
             </Link>
             <Button asChild className="w-full">
-              <Link to="/pricing" onClick={() => setMobileMenuOpen(false)}>Book Free Class</Link>
+              <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>Book a Class</Link>
             </Button>
           </div>
         )}

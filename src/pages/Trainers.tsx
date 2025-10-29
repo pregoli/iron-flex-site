@@ -100,7 +100,7 @@ const Trainers = () => {
                 Our coaches are committed to helping you achieve your boxing goals
               </p>
               <Button asChild size="lg" className="text-lg px-8 py-6 font-bold">
-                <Link to="/pricing">Start Training Today</Link>
+                <Link to="/contact">Get Started</Link>
               </Button>
             </div>
           </section>

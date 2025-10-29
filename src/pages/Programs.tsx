@@ -96,10 +96,10 @@ const Programs = () => {
             <div className="container mx-auto px-6 text-center">
               <h2 className="font-display text-4xl md:text-5xl mb-6">Ready to Start Your Boxing Journey?</h2>
               <p className="text-xl mb-8 text-muted-foreground max-w-2xl mx-auto">
-                Book your free trial class today and experience professional boxing training
+                Choose your membership plan and experience professional boxing training
               </p>
               <Button asChild size="lg" className="text-lg px-8 py-6 font-bold">
-                <Link to="/pricing">Book Free Class</Link>
+                <Link to="/pricing">View Membership Plans</Link>
               </Button>
             </div>
           </section>

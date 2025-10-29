@@ -2,6 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 const Pricing = () => {
@@ -43,7 +44,7 @@ const Pricing = () => {
     <>
       <Helmet>
         <title>Boxing Gym Membership Prices | Brunswick Boxing Twickenham</title>
-        <meta name="description" content="Affordable boxing gym membership plans in Twickenham. From £45/month. Basic, Pro, and Elite packages available. Book your free class today!" />
+        <meta name="description" content="Affordable boxing gym membership plans in Twickenham. From £45/month. Basic, Pro, and Elite packages available. Join today!" />
         <meta name="keywords" content="boxing gym prices, boxing membership Twickenham, boxing gym cost, affordable boxing classes" />
         <link rel="canonical" href="https://brunswickboxing.co.uk/pricing" />
       </Helmet>
@@ -102,16 +103,16 @@ const Pricing = () => {
             </div>
           </section>
 
-          {/* Free Trial CTA */}
+          {/* CTA Section */}
           <section className="py-24 bg-secondary/50">
             <div className="container mx-auto px-6 text-center">
               <div className="text-6xl mb-6">🥊</div>
-              <h2 className="font-display text-4xl md:text-5xl mb-6">Try Before You Commit</h2>
+              <h2 className="font-display text-4xl md:text-5xl mb-6">Ready to Join?</h2>
               <p className="text-xl mb-8 text-muted-foreground max-w-2xl mx-auto">
-                Not sure which plan is right for you? Book a free trial class and experience Brunswick Boxing
+                Not sure which plan is right for you? Contact us and we&apos;ll help you find the perfect membership
               </p>
-              <Button size="lg" className="text-lg px-8 py-6 font-bold bg-gradient-hero">
-                BOOK FREE CLASS
+              <Button asChild size="lg" className="text-lg px-8 py-6 font-bold bg-gradient-hero">
+                <Link to="/contact">CONTACT US</Link>
               </Button>
             </div>
           </section>

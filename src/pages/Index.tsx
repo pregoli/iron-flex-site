@@ -12,7 +12,7 @@ const Index = () => {
     <>
       <Helmet>
         <title>Brunswick Boxing - Professional Boxing Gym in Twickenham, London</title>
-        <meta name="description" content="Premier boxing gym in Twickenham, London. Professional boxing training, fitness classes, expert coaches. Beginner to competitive level. Book your free class today!" />
+        <meta name="description" content="Premier boxing gym in Twickenham, London. Professional boxing training, fitness classes, expert coaches. Beginner to competitive level. Join today!" />
         <meta name="keywords" content="boxing gym Twickenham, boxing classes London, professional boxing training, boxing fitness, boxing coaches, learn boxing Twickenham" />
         <link rel="canonical" href="https://brunswickboxing.co.uk/" />
       </Helmet>
@@ -42,8 +42,8 @@ const Index = () => {
             Master the sweet science. Train with professional boxing coaches. Step into the ring.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
-            <Button asChild size="lg" className="bg-gradient-hero text-lg px-8 py-6 font-bold hover:shadow-glow transition-all" aria-label="Book your free boxing class">
-              <Link to="/pricing">BOOK FREE BOXING CLASS</Link>
+            <Button asChild size="lg" className="bg-gradient-hero text-lg px-8 py-6 font-bold hover:shadow-glow transition-all" aria-label="Book a boxing class">
+              <Link to="/contact">BOOK A CLASS</Link>
             </Button>
             <Button asChild size="lg" variant="secondary" className="text-lg px-8 py-6 font-bold" aria-label="View our boxing programs">
               <Link to="/programs">VIEW BOXING PROGRAMS</Link>
@@ -190,10 +190,10 @@ const Index = () => {
           <div className="text-6xl mb-6">🥊</div>
           <h2 className="font-display text-5xl md:text-6xl mb-6 text-primary-foreground">STEP INTO THE RING</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto text-primary-foreground/90">
-            Start your boxing journey at Brunswick Boxing. First boxing class completely free.
+            Start your boxing journey at Brunswick Boxing. Join our community of dedicated fighters.
           </p>
           <Button asChild size="lg" variant="secondary" className="text-lg px-8 py-6 font-bold">
-            <Link to="/pricing">BOOK FREE BOXING CLASS</Link>
+            <Link to="/contact">GET STARTED TODAY</Link>
           </Button>
         </div>
       </section>
