@@ -44,14 +44,14 @@ const Index = () => {
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "06:00",
-        "closes": "22:00"
+        "dayOfWeek": ["Monday", "Wednesday"],
+        "opens": "17:00",
+        "closes": "20:00"
       },
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Saturday", "Sunday"],
-        "opens": "08:00",
+        "dayOfWeek": ["Friday"],
+        "opens": "18:00",
         "closes": "20:00"
       }
     ],
@@ -557,11 +557,35 @@ const Index = () => {
                   <Card className="p-6 bg-gradient-card border-border">
                     <div className="flex items-center gap-3 mb-4">
                       <Clock className="w-6 h-6 text-primary" />
-                      <h3 className="font-bold text-lg">Opening Hours</h3>
+                      <h3 className="font-bold text-lg">Weekly Schedule</h3>
                     </div>
-                    <div className="text-sm space-y-2">
-                      <p><time className="font-medium">Monday - Friday:</time> 6am - 10pm</p>
-                      <p><time className="font-medium">Saturday - Sunday:</time> 8am - 8pm</p>
+                    <div className="text-sm space-y-3">
+                      <div>
+                        <p className="font-semibold">Monday</p>
+                        <p className="text-muted-foreground">5pm-6pm: Juniors Session</p>
+                        <p className="text-muted-foreground">6pm-8pm: General Boxing & Fitness</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Tuesday</p>
+                        <p className="text-muted-foreground">CLOSED</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Wednesday</p>
+                        <p className="text-muted-foreground">5pm-6pm: Juniors Session</p>
+                        <p className="text-muted-foreground">6pm-8pm: General Boxing & Fitness</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Thursday</p>
+                        <p className="text-muted-foreground">CLOSED</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Friday</p>
+                        <p className="text-muted-foreground">6pm-8pm: General Boxing & Fitness</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Saturday & Sunday</p>
+                        <p className="text-muted-foreground">CLOSED</p>
+                      </div>
                     </div>
                   </Card>
 
