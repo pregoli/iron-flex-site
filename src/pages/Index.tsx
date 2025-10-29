@@ -291,12 +291,10 @@ const Index = () => {
           <h2 className="font-display text-5xl md:text-6xl text-center mb-4">OUR COACHES</h2>
           <p className="text-center text-muted-foreground mb-16 text-lg">Qualified England Boxing coaches with championship experience</p>
           
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
             {[
-              { name: "Mike Rodriguez", role: "Head Boxing Coach", exp: "Ex-Pro Boxer, 22-3 record" },
-              { name: "Sarah Chen", role: "Technique Specialist", exp: "England Boxing Coach" },
-              { name: "Marcus Johnson", role: "Fitness Coach", exp: "Former ABA Champion" },
-              { name: "Elena Volkov", role: "Youth Coach", exp: "Amateur Champion" }
+              { name: "Mike Rodriguez", role: "Head Boxing Coach", exp: "England Boxing Certified" },
+              { name: "Sarah Chen", role: "Boxing Coach", exp: "England Boxing Certified" }
             ].map((trainer, i) => (
               <Card key={i} className="p-6 bg-gradient-card border-border hover:border-primary transition-all group animate-scale-in" style={{ animationDelay: `${i * 0.1}s` }}>
                 <div className="aspect-square bg-muted rounded-lg mb-4 flex items-center justify-center group-hover:scale-105 transition-transform" role="img" aria-label={`${trainer.name} - ${trainer.role}`}>
