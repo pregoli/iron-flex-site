@@ -554,6 +554,21 @@ const Index = () => {
                       Twickenham<br/>
                       London, UK
                     </address>
+                    
+                    {/* Map Embed */}
+                    <div className="mb-4 rounded-lg overflow-hidden border border-border">
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39774.86924927376!2d-0.3583932!3d51.4479!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48760db7f9c3e5e9%3A0x8e9c3e84f9f1e2f9!2sTwickenham%2C%20London%2C%20UK!5e0!3m2!1sen!2suk!4v1234567890"
+                        width="100%"
+                        height="200"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title="Brunswick Boxing Location"
+                      />
+                    </div>
+                    
                     <div className="bg-destructive/10 border-l-4 border-destructive p-3 rounded">
                       <p className="text-xs font-bold text-destructive mb-1">⚠️ PARKING NOTICE</p>
                       <p className="text-xs">Car park is for drop-off/pick-up ONLY. Please do not park.</p>
