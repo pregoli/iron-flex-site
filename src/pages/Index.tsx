@@ -339,7 +339,7 @@ const Index = () => {
                     </div>
                     <div className="flex items-start gap-2 text-sm">
                       <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2"></div>
-                      <span>Monday, Wednesday, Friday</span>
+                      <span>Monday, Wednesday, Friday (6pm - 8pm)</span>
                     </div>
                     <div className="flex items-start gap-2 text-sm">
                       <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2"></div>
@@ -374,7 +374,7 @@ const Index = () => {
                     </div>
                     <div className="flex items-start gap-2 text-sm">
                       <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2"></div>
-                      <span>3 sessions per week (Mon/Wed/Fri)</span>
+                      <span>3 sessions per week (Mon/Wed/Fri 6pm-8pm)</span>
                     </div>
                     <div className="flex items-start gap-2 text-sm">
                       <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2"></div>
