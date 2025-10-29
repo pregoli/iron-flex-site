@@ -15,29 +15,79 @@ const Index = () => {
     }
   };
 
+  // Structured Data for Local Business
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "SportsActivityLocation",
+    "name": "Brunswick Boxing",
+    "image": "https://brunswickboxing.co.uk/hero-boxing.jpg",
+    "description": "Premier professional boxing gym in Twickenham, London. Expert coaches, beginner to competitive training programs.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Twickenham",
+      "addressLocality": "London",
+      "addressRegion": "Greater London",
+      "postalCode": "TW1",
+      "addressCountry": "GB"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "51.4479",
+      "longitude": "-0.3260"
+    },
+    "telephone": "+44-20-1234-5678",
+    "email": "info@brunswickboxing.co.uk",
+    "priceRange": "££",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "06:00",
+        "closes": "22:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Saturday", "Sunday"],
+        "opens": "08:00",
+        "closes": "20:00"
+      }
+    ],
+    "sameAs": [
+      "https://www.facebook.com/brunswickboxing",
+      "https://www.instagram.com/brunswickboxing"
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-background">
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border" role="navigation" aria-label="Main navigation">
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between h-16">
-            <div className="font-display text-2xl font-bold">BRUNSWICK BOXING</div>
+            <h2 className="font-display text-2xl font-bold">BRUNSWICK BOXING</h2>
             
             {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-8">
-              <button onClick={() => scrollToSection('programs')} className="text-foreground hover:text-primary transition-colors font-medium">Programs</button>
-              <button onClick={() => scrollToSection('trainers')} className="text-foreground hover:text-primary transition-colors font-medium">Trainers</button>
-              <button onClick={() => scrollToSection('pricing')} className="text-foreground hover:text-primary transition-colors font-medium">Pricing</button>
-              <button onClick={() => scrollToSection('contact')} className="text-foreground hover:text-primary transition-colors font-medium">Contact</button>
-              <Button onClick={() => scrollToSection('pricing')} size="sm">Book Free Class</Button>
-            </div>
+            <ul className="hidden md:flex items-center space-x-8">
+              <li><button onClick={() => scrollToSection('programs')} className="text-foreground hover:text-primary transition-colors font-medium">Programs</button></li>
+              <li><button onClick={() => scrollToSection('trainers')} className="text-foreground hover:text-primary transition-colors font-medium">Trainers</button></li>
+              <li><button onClick={() => scrollToSection('pricing')} className="text-foreground hover:text-primary transition-colors font-medium">Pricing</button></li>
+              <li><button onClick={() => scrollToSection('contact')} className="text-foreground hover:text-primary transition-colors font-medium">Contact</button></li>
+              <li><Button onClick={() => scrollToSection('pricing')} size="sm">Book Free Class</Button></li>
+            </ul>
 
             {/* Mobile Menu Button */}
             <button 
               className="md:hidden p-2"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle mobile menu"
+              aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X /> : <Menu />}
+              {mobileMenuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
             </button>
           </div>
 
@@ -55,17 +105,19 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
+      <header className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
+          role="img"
+          aria-label="Boxing training session at Brunswick Boxing gym"
         >
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-background"></div>
         </div>
         
         <div className="relative z-10 container mx-auto px-6 text-center animate-fade-in">
           <div className="inline-block mb-4 px-6 py-2 bg-primary/20 border-2 border-primary rounded-full">
-            <span className="font-bold text-primary text-sm tracking-wider">🥊 PROFESSIONAL BOXING GYM</span>
+            <span className="font-bold text-primary text-sm tracking-wider" role="text">🥊 PROFESSIONAL BOXING GYM</span>
           </div>
           <h1 className="font-display text-7xl md:text-9xl font-bold mb-6 tracking-tight">
             BRUNSWICK BOXING
@@ -74,15 +126,15 @@ const Index = () => {
             Master the sweet science. Train with professional boxing coaches. Step into the ring.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
-            <Button size="lg" className="bg-gradient-hero text-lg px-8 py-6 font-bold hover:shadow-glow transition-all">
+            <Button size="lg" className="bg-gradient-hero text-lg px-8 py-6 font-bold hover:shadow-glow transition-all" aria-label="Book your free boxing class">
               BOOK FREE BOXING CLASS
             </Button>
-            <Button size="lg" variant="secondary" className="text-lg px-8 py-6 font-bold">
+            <Button size="lg" variant="secondary" className="text-lg px-8 py-6 font-bold" onClick={() => scrollToSection('programs')} aria-label="View our boxing programs">
               VIEW BOXING PROGRAMS
             </Button>
           </div>
         </div>
-      </section>
+      </header>
 
       {/* Stats Section */}
       <section className="py-20 bg-secondary/50">
@@ -104,8 +156,8 @@ const Index = () => {
       </section>
 
       {/* Programs Section */}
-      <section id="programs" className="py-24 container mx-auto px-6">
-        <h2 className="font-display text-5xl md:text-6xl text-center mb-4">BOXING PROGRAMS</h2>
+      <section id="programs" className="py-24 container mx-auto px-6" aria-labelledby="programs-heading">
+        <h2 id="programs-heading" className="font-display text-5xl md:text-6xl text-center mb-4">BOXING PROGRAMS</h2>
         <p className="text-center text-muted-foreground mb-16 text-lg">From beginner to championship level</p>
         
         <div className="grid md:grid-cols-3 gap-8">
@@ -129,8 +181,8 @@ const Index = () => {
               features: ["Ring sparring sessions", "Fight camp preparation", "Competition strategy"]
             }
           ].map((program, i) => (
-            <Card key={i} className="p-8 bg-gradient-card border-border hover:border-primary transition-all hover:shadow-card group animate-fade-in" style={{ animationDelay: `${i * 0.15}s` }}>
-              <program.icon className="w-12 h-12 text-primary mb-6 group-hover:scale-110 transition-transform" />
+            <article key={i} className="p-8 bg-gradient-card border-border hover:border-primary transition-all hover:shadow-card group animate-fade-in rounded-lg border" style={{ animationDelay: `${i * 0.15}s` }}>
+              <program.icon className="w-12 h-12 text-primary mb-6 group-hover:scale-110 transition-transform" aria-hidden="true" />
               <h3 className="font-display text-3xl mb-4">{program.title}</h3>
               <p className="text-muted-foreground mb-6">{program.description}</p>
               <ul className="space-y-2 mb-6">
@@ -141,16 +193,16 @@ const Index = () => {
                   </li>
                 ))}
               </ul>
-              <Button variant="secondary" className="w-full font-bold">Learn More</Button>
-            </Card>
+              <Button variant="secondary" className="w-full font-bold" aria-label={`Learn more about ${program.title}`}>Learn More</Button>
+            </article>
           ))}
         </div>
       </section>
 
       {/* Trainers Section */}
-      <section id="trainers" className="py-24 bg-secondary/50">
+      <section id="trainers" className="py-24 bg-secondary/50" aria-labelledby="trainers-heading">
         <div className="container mx-auto px-6">
-          <h2 className="font-display text-5xl md:text-6xl text-center mb-4">BOXING COACHES</h2>
+          <h2 id="trainers-heading" className="font-display text-5xl md:text-6xl text-center mb-4">BOXING COACHES</h2>
           <p className="text-center text-muted-foreground mb-16 text-lg">Certified boxing trainers with professional fight experience</p>
           
           <div className="grid md:grid-cols-4 gap-6">
@@ -160,22 +212,22 @@ const Index = () => {
               { name: "Marcus Johnson", role: "Boxing Fitness Coach", exp: "Former Golden Gloves Champion" },
               { name: "Elena Volkov", role: "Youth Boxing Coach", exp: "Amateur Boxing Champion" }
             ].map((trainer, i) => (
-              <Card key={i} className="p-6 bg-gradient-card border-border hover:border-primary transition-all group animate-scale-in" style={{ animationDelay: `${i * 0.1}s` }}>
-                <div className="aspect-square bg-muted rounded-lg mb-4 flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <Users className="w-16 h-16 text-primary" />
+              <article key={i} className="p-6 bg-gradient-card border-border hover:border-primary transition-all group animate-scale-in rounded-lg border" style={{ animationDelay: `${i * 0.1}s` }}>
+                <div className="aspect-square bg-muted rounded-lg mb-4 flex items-center justify-center group-hover:scale-105 transition-transform" role="img" aria-label={`${trainer.name} - ${trainer.role}`}>
+                  <Users className="w-16 h-16 text-primary" aria-hidden="true" />
                 </div>
                 <h3 className="font-display text-2xl mb-1">{trainer.name}</h3>
                 <p className="text-primary text-sm font-semibold mb-1">{trainer.role}</p>
-                <p className="text-muted-foreground text-sm">{trainer.exp} experience</p>
-              </Card>
+                <p className="text-muted-foreground text-sm">{trainer.exp}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-24 container mx-auto px-6">
-        <h2 className="font-display text-5xl md:text-6xl text-center mb-4">MEMBERSHIP PLANS</h2>
+      <section id="pricing" className="py-24 container mx-auto px-6" aria-labelledby="pricing-heading">
+        <h2 id="pricing-heading" className="font-display text-5xl md:text-6xl text-center mb-4">MEMBERSHIP PLANS</h2>
         <p className="text-center text-muted-foreground mb-16 text-lg">Invest in yourself today</p>
         
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -184,9 +236,9 @@ const Index = () => {
             { name: "Pro", price: "89", features: ["Everything in Basic", "2 private boxing sessions/month", "Sparring access", "Boxing gloves included"], popular: true },
             { name: "Elite", price: "179", features: ["Everything in Pro", "Unlimited private coaching", "Fight preparation & cornering", "Competition registration support"] }
           ].map((plan, i) => (
-            <Card key={i} className={`p-8 bg-gradient-card border-border hover:shadow-card transition-all animate-fade-in ${plan.popular ? 'border-primary shadow-glow scale-105' : ''}`} style={{ animationDelay: `${i * 0.15}s` }}>
+            <article key={i} className={`p-8 bg-gradient-card border-border hover:shadow-card transition-all animate-fade-in rounded-lg border ${plan.popular ? 'border-primary shadow-glow scale-105' : ''}`} style={{ animationDelay: `${i * 0.15}s` }}>
               {plan.popular && (
-                <div className="bg-gradient-hero text-primary-foreground text-xs font-bold px-3 py-1 rounded-full w-fit mb-4">
+                <div className="bg-gradient-hero text-primary-foreground text-xs font-bold px-3 py-1 rounded-full w-fit mb-4" role="status">
                   MOST POPULAR
                 </div>
               )}
@@ -203,10 +255,10 @@ const Index = () => {
                   </li>
                 ))}
               </ul>
-              <Button className={`w-full font-bold ${plan.popular ? 'bg-gradient-hero' : ''}`}>
+              <Button className={`w-full font-bold ${plan.popular ? 'bg-gradient-hero' : ''}`} aria-label={`Get started with ${plan.name} plan for £${plan.price} per month`}>
                 GET STARTED
               </Button>
-            </Card>
+            </article>
           ))}
         </div>
       </section>
@@ -226,24 +278,32 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer id="contact" className="py-12 bg-secondary/50 border-t border-border">
+      <footer id="contact" className="py-12 bg-secondary/50 border-t border-border" role="contentinfo">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <h3 className="font-display text-2xl mb-4">BRUNSWICK BOXING</h3>
-              <p className="text-muted-foreground text-sm">Twickenham's premier boxing gym since 2009</p>
+              <p className="text-muted-foreground text-sm">Twickenham&apos;s premier boxing gym since 2009</p>
             </div>
             <div>
               <h4 className="font-bold mb-4">Hours</h4>
-              <p className="text-muted-foreground text-sm">Mon-Fri: 6am - 10pm<br/>Sat-Sun: 8am - 8pm</p>
+              <p className="text-muted-foreground text-sm">
+                <time>Mon-Fri: 6am - 10pm</time><br/>
+                <time>Sat-Sun: 8am - 8pm</time>
+              </p>
             </div>
             <div>
               <h4 className="font-bold mb-4">Location</h4>
-              <p className="text-muted-foreground text-sm">Twickenham<br/>London, UK</p>
+              <address className="text-muted-foreground text-sm not-italic">
+                Twickenham<br/>London, UK
+              </address>
             </div>
             <div>
               <h4 className="font-bold mb-4">Contact</h4>
-              <p className="text-muted-foreground text-sm">info@brunswickboxing.co.uk<br/>020 1234 5678</p>
+              <p className="text-muted-foreground text-sm">
+                <a href="mailto:info@brunswickboxing.co.uk" className="hover:text-primary transition-colors">info@brunswickboxing.co.uk</a><br/>
+                <a href="tel:+442012345678" className="hover:text-primary transition-colors">020 1234 5678</a>
+              </p>
             </div>
           </div>
           <div className="border-t border-border pt-8 text-center text-muted-foreground text-sm">
