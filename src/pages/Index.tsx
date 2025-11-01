@@ -12,6 +12,7 @@ const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
+    window.location.hash = id;
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -38,8 +39,8 @@ const Index = () => {
       "latitude": "51.4479",
       "longitude": "-0.3260"
     },
-    "telephone": "+44-20-1234-5678",
-    "email": "info@brunswickboxing.co.uk",
+    "telephone": "+44-7786-903306",
+    "email": "forddavy@gmail.com",
     "priceRange": "££",
     "openingHoursSpecification": [
       {
@@ -63,9 +64,9 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Brunswick Boxing - Professional Boxing Gym in Twickenham, London</title>
-        <meta name="description" content="35 years of boxing excellence in Twickenham. England Boxing affiliated gym. Junior to senior champions. Ages 9-90 welcome. Join today!" />
-        <meta name="keywords" content="boxing gym Twickenham, Brunswick ABC, England Boxing, amateur boxing, boxing training, boxing club Twickenham" />
+        <title>Brunswick Boxing - Amateur Boxing Club in Twickenham, London</title>
+        <meta name="description" content="35 years of boxing excellence in Twickenham. England Boxing affiliated amateur club. Junior to senior champions. Ages 9-90 welcome. Join today!" />
+        <meta name="keywords" content="amateur boxing club Twickenham, Brunswick ABC, England Boxing, amateur boxing, boxing training, boxing club Twickenham" />
         <link rel="canonical" href="https://brunswickboxing.co.uk/" />
       </Helmet>
 
@@ -337,22 +338,44 @@ const Index = () => {
           <h2 className="font-display text-5xl md:text-6xl text-center mb-4">OUR COACHES</h2>
           <p className="text-center text-muted-foreground mb-16 text-lg">Qualified England Boxing coaches with championship experience</p>
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {[
-              { name: "Pud", role: "Head Boxing Coach", exp: "England Boxing Certified", image: coachPud },
-              { name: "Jerry", role: "Boxing Coach", exp: "England Boxing Certified", image: coachJerry }
+              { 
+                name: "Pud", 
+                role: "Head Coach", 
+                exp: "35 years at club • 15 years coaching • 8 years head coach • Multiple champions trained", 
+                image: coachPud 
+              },
+              { 
+                name: "Gerry", 
+                role: "Head Junior Coach", 
+                exp: "5 years at club • 2 years Head Junior Coach", 
+                image: coachJerry 
+              },
+              { 
+                name: "Paul", 
+                role: "Senior Coach", 
+                exp: "30 years club member • 25 years coaching • Well-respected in boxing community", 
+                image: null 
+              }
             ].map((trainer, i) => (
               <Card key={i} className="p-6 bg-gradient-card border-border hover:border-primary transition-all group animate-scale-in" style={{ animationDelay: `${i * 0.1}s` }}>
-                <div className="aspect-square bg-muted rounded-lg mb-4 overflow-hidden group-hover:scale-105 transition-transform">
-                  <img 
-                    src={trainer.image} 
-                    alt={`${trainer.name} - ${trainer.role}`}
-                    className="w-full h-full object-cover"
-                  />
+                <div className="aspect-square bg-muted rounded-lg mb-4 overflow-hidden group-hover:scale-105 transition-transform flex items-center justify-center">
+                  {trainer.image ? (
+                    <img 
+                      src={trainer.image} 
+                      alt={`${trainer.name} - ${trainer.role}`}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-muted">
+                      <Users className="w-24 h-24 text-muted-foreground" />
+                    </div>
+                  )}
                 </div>
                 <h3 className="font-display text-2xl mb-1">{trainer.name}</h3>
-                <p className="text-primary text-sm font-semibold mb-1">{trainer.role}</p>
-                <p className="text-muted-foreground text-sm">{trainer.exp}</p>
+                <p className="text-primary text-sm font-semibold mb-2">{trainer.role}</p>
+                <p className="text-muted-foreground text-xs leading-relaxed">{trainer.exp}</p>
               </Card>
             ))}
           </div>
@@ -441,69 +464,43 @@ const Index = () => {
                 <p className="text-muted-foreground">One-on-one coaching for focused development</p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-8">
-                <Card className="p-8 bg-gradient-card border-border">
-                  <div className="flex items-center gap-3 mb-6">
-                    <Users className="w-8 h-8 text-primary" />
-                    <div>
-                      <h4 className="font-display text-2xl">With Coach</h4>
-                      <p className="text-sm text-muted-foreground">Qualified England Boxing coach</p>
-                    </div>
+              <Card className="p-8 bg-gradient-card border-border max-w-md mx-auto">
+                <div className="flex items-center gap-3 mb-6 justify-center">
+                  <Trophy className="w-10 h-10 text-primary" />
+                  <div className="text-center">
+                    <h4 className="font-display text-2xl">1-on-1 Coaching</h4>
+                    <p className="text-sm text-muted-foreground">Private sessions with qualified coaches</p>
                   </div>
-                  <div className="mb-6">
+                </div>
+                <div className="mb-6 text-center">
+                  <span className="text-muted-foreground text-sm">Starting from</span>
+                  <div>
                     <span className="font-display text-5xl text-primary">£30</span>
                     <span className="text-muted-foreground">/hour</span>
                   </div>
-                  <div className="space-y-2 mb-6">
-                    <div className="flex items-center gap-2 text-sm">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                      <span>1-hour private session</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                      <span>Personalized training plan</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                      <span>Technique focus</span>
-                    </div>
+                </div>
+                <div className="space-y-2 mb-6">
+                  <div className="flex items-center gap-2 text-sm">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                    <span>1-hour private session</span>
                   </div>
-                  <Button onClick={() => scrollToSection('contact')} variant="outline" className="w-full font-bold">
-                    Book Session
-                  </Button>
-                </Card>
-
-                <Card className="p-8 bg-gradient-card border-border">
-                  <div className="flex items-center gap-3 mb-6">
-                    <Trophy className="w-8 h-8 text-primary" />
-                    <div>
-                      <h4 className="font-display text-2xl">With Head Coach</h4>
-                      <p className="text-sm text-muted-foreground">Elite level coaching</p>
-                    </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                    <span>Personalized training plan</span>
                   </div>
-                  <div className="mb-6">
-                    <span className="font-display text-5xl text-primary">£35</span>
-                    <span className="text-muted-foreground">/hour</span>
+                  <div className="flex items-center gap-2 text-sm">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                    <span>Technique & competition focus</span>
                   </div>
-                  <div className="space-y-2 mb-6">
-                    <div className="flex items-center gap-2 text-sm">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                      <span>1-hour private session</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                      <span>Advanced technique training</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                      <span>Competition preparation</span>
-                    </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                    <span>Flexible scheduling</span>
                   </div>
-                  <Button onClick={() => scrollToSection('contact')} variant="outline" className="w-full font-bold">
-                    Book Session
-                  </Button>
-                </Card>
-              </div>
+                </div>
+                <Button onClick={() => scrollToSection('contact')} variant="outline" className="w-full font-bold">
+                  Book Session
+                </Button>
+              </Card>
             </div>
           </div>
         </section>
@@ -533,7 +530,7 @@ const Index = () => {
                 {/* Contact Form */}
                 <Card className="p-8 bg-gradient-card border-border">
                   <h3 className="font-display text-2xl mb-6">Send us a Message</h3>
-                  <form action="https://formsubmit.co/info@brunswickboxing.co.uk" method="POST" className="space-y-4">
+                  <form action="https://formsubmit.co/forddavy@gmail.com" method="POST" className="space-y-4">
                     {/* FormSubmit Configuration */}
                     <input type="hidden" name="_subject" value="New enquiry from Brunswick Boxing website" />
                     <input type="hidden" name="_captcha" value="false" />
@@ -619,7 +616,10 @@ const Index = () => {
                       </div>
                       <div>
                         <p className="font-semibold text-base">Tuesday</p>
-                        <p className="text-muted-foreground pl-3">CLOSED</p>
+                        <p className="text-muted-foreground pl-3">
+                          <Badge variant="outline" className="mr-2 text-xs">SPARRING</Badge>
+                          Selected boxers only
+                        </p>
                       </div>
                       <div>
                         <p className="font-semibold text-base mb-2">Wednesday</p>
@@ -636,7 +636,10 @@ const Index = () => {
                       </div>
                       <div>
                         <p className="font-semibold text-base">Thursday</p>
-                        <p className="text-muted-foreground pl-3">CLOSED</p>
+                        <p className="text-muted-foreground pl-3">
+                          <Badge variant="outline" className="mr-2 text-xs">SPARRING</Badge>
+                          Selected boxers only
+                        </p>
                       </div>
                       <div>
                         <p className="font-semibold text-base mb-2">Friday</p>
@@ -649,7 +652,10 @@ const Index = () => {
                       </div>
                       <div>
                         <p className="font-semibold text-base">Saturday & Sunday</p>
-                        <p className="text-muted-foreground pl-3">CLOSED</p>
+                        <p className="text-muted-foreground pl-3">
+                          <Badge variant="outline" className="mr-2 text-xs">SPARRING</Badge>
+                          Selected boxers only
+                        </p>
                       </div>
                     </div>
                   </Card>
@@ -692,13 +698,13 @@ const Index = () => {
                       <h3 className="font-bold text-lg">Contact Us</h3>
                     </div>
                     <div className="text-sm space-y-3">
-                      <a href="mailto:info@brunswickboxing.co.uk" className="hover:text-primary transition-colors flex items-center gap-2">
+                      <a href="mailto:forddavy@gmail.com" className="hover:text-primary transition-colors flex items-center gap-2">
                         <Mail className="w-4 h-4" />
-                        info@brunswickboxing.co.uk
+                        forddavy@gmail.com
                       </a>
-                      <a href="tel:+442012345678" className="hover:text-primary transition-colors flex items-center gap-2">
+                      <a href="tel:+447786903306" className="hover:text-primary transition-colors flex items-center gap-2">
                         <Phone className="w-4 h-4" />
-                        020 1234 5678
+                        07786 903306
                       </a>
                       <a 
                         href="https://www.instagram.com/twickenham_brunswick_abc" 
