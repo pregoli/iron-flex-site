@@ -168,7 +168,7 @@ const Index = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
                 { label: "Years Running", value: "35+" },
-                { label: "Expert Coaches", value: "12" },
+                { label: "Expert Coaches", value: "3" },
                 { label: "Championships Won", value: "150+" },
                 { label: "Age Range", value: "9-90" }
               ].map((stat, i) => (
