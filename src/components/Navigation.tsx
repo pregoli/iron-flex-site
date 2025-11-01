@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -23,22 +23,41 @@ export const Navigation = ({ enableScrolling = false }: NavigationProps) => {
     { path: "/contact", label: "Contact", sectionId: "contact" }
   ];
 
+  // Handle hash scrolling on mount
+  useEffect(() => {
+    if (enableScrolling && location.hash) {
+      const id = location.hash.substring(1);
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [location.hash, enableScrolling]);
+
   const handleNavClick = (e: React.MouseEvent, item: typeof navItems[0]) => {
+    setMobileMenuOpen(false);
+    
     if (enableScrolling && location.pathname === "/") {
-      // Scroll to section on Index page
+      // On home page - scroll to section
       e.preventDefault();
       const element = document.getElementById(item.sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
-        setMobileMenuOpen(false);
+        // Update URL hash without navigation
+        window.history.pushState(null, '', `#${item.sectionId}`);
       }
-    } else if (enableScrolling && location.pathname !== "/") {
-      // Navigate to home page with hash
+    } else if (enableScrolling && item.path === "/") {
+      // Going to home from another page
+      e.preventDefault();
+      navigate("/");
+    } else if (enableScrolling) {
+      // Going to home with section from another page
       e.preventDefault();
       navigate(`/#${item.sectionId}`);
-      setMobileMenuOpen(false);
     }
-    // Otherwise, let Link handle navigation normally
+    // For non-scrolling nav, let Link handle normally
   };
 
   return (
