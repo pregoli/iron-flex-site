@@ -1,64 +1,22 @@
-import { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
-interface NavigationProps {
-  enableScrolling?: boolean;
-}
-
-export const Navigation = ({ enableScrolling = false }: NavigationProps) => {
+export const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
   
   const isActive = (path: string) => location.pathname === path;
   
   const navItems = [
-    { path: "/", label: "Home", sectionId: "hero" },
-    { path: "/about", label: "About", sectionId: "about" },
-    { path: "/programs", label: "Programs", sectionId: "programs" },
-    { path: "/coaches", label: "Coaches", sectionId: "trainers" },
-    { path: "/pricing", label: "Pricing", sectionId: "pricing" },
-    { path: "/contact", label: "Contact", sectionId: "contact" }
+    { path: "/", label: "Home" },
+    { path: "/about", label: "About" },
+    { path: "/programs", label: "Programs" },
+    { path: "/coaches", label: "Coaches" },
+    { path: "/pricing", label: "Pricing" },
+    { path: "/contact", label: "Contact" }
   ];
-
-  // Handle hash scrolling on mount
-  useEffect(() => {
-    if (enableScrolling && location.hash) {
-      const id = location.hash.substring(1);
-      setTimeout(() => {
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    }
-  }, [location.hash, enableScrolling]);
-
-  const handleNavClick = (e: React.MouseEvent, item: typeof navItems[0]) => {
-    setMobileMenuOpen(false);
-    
-    if (enableScrolling && location.pathname === "/") {
-      // On home page - scroll to section
-      e.preventDefault();
-      const element = document.getElementById(item.sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-        // Update URL hash without navigation
-        window.history.pushState(null, '', `#${item.sectionId}`);
-      }
-    } else if (enableScrolling && item.path === "/") {
-      // Going to home from another page
-      e.preventDefault();
-      navigate("/");
-    } else if (enableScrolling) {
-      // Going to home with section from another page
-      e.preventDefault();
-      navigate(`/#${item.sectionId}`);
-    }
-    // For non-scrolling nav, let Link handle normally
-  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border" role="navigation" aria-label="Main navigation">
@@ -74,7 +32,6 @@ export const Navigation = ({ enableScrolling = false }: NavigationProps) => {
               <li key={item.path}>
                 <Link 
                   to={item.path}
-                  onClick={(e) => handleNavClick(e, item)}
                   className={`transition-colors font-medium whitespace-nowrap ${
                     isActive(item.path) 
                       ? "text-primary" 
@@ -123,10 +80,10 @@ export const Navigation = ({ enableScrolling = false }: NavigationProps) => {
               <Link 
                 key={item.path}
                 to={item.path}
-                onClick={(e) => handleNavClick(e, item)}
                 className={`block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium ${
                   isActive(item.path) ? "text-primary bg-accent" : ""
                 }`}
+                onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
               </Link>
