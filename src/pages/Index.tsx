@@ -84,21 +84,21 @@ const Index = () => {
         <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border" role="navigation" aria-label="Main navigation">
           <div className="container mx-auto px-6">
             <div className="flex items-center justify-between h-16">
-              <Link to="/" className="font-display text-2xl font-bold">BRUNSWICK BOXING</Link>
+              <Link to="/" className="font-display text-2xl font-bold flex-shrink-0">BRUNSWICK BOXING</Link>
               
               {/* Desktop Menu */}
-              <ul className="hidden md:flex items-center space-x-8">
-                <li><Link to="/about" className="text-foreground hover:text-primary transition-colors font-medium">About</Link></li>
-                <li><Link to="/programs" className="text-foreground hover:text-primary transition-colors font-medium">Programs</Link></li>
-                <li><Link to="/coaches" className="text-foreground hover:text-primary transition-colors font-medium">Coaches</Link></li>
-                <li><Link to="/pricing" className="text-foreground hover:text-primary transition-colors font-medium">Pricing</Link></li>
-                <li><Link to="/contact" className="text-foreground hover:text-primary transition-colors font-medium">Contact</Link></li>
+              <ul className="hidden md:flex items-center gap-8 flex-shrink-0">
+                <li><Link to="/about" className="text-foreground hover:text-primary transition-colors font-medium whitespace-nowrap">About</Link></li>
+                <li><Link to="/programs" className="text-foreground hover:text-primary transition-colors font-medium whitespace-nowrap">Programs</Link></li>
+                <li><Link to="/coaches" className="text-foreground hover:text-primary transition-colors font-medium whitespace-nowrap">Coaches</Link></li>
+                <li><Link to="/pricing" className="text-foreground hover:text-primary transition-colors font-medium whitespace-nowrap">Pricing</Link></li>
+                <li><Link to="/contact" className="text-foreground hover:text-primary transition-colors font-medium whitespace-nowrap">Contact</Link></li>
                 <li>
                   <a 
                     href="https://www.instagram.com/twickenham_brunswick_abc" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-foreground hover:text-primary transition-colors"
+                    className="text-foreground hover:text-primary transition-colors flex items-center"
                     aria-label="Follow us on Instagram"
                   >
                     <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -106,7 +106,7 @@ const Index = () => {
                     </svg>
                   </a>
                 </li>
-                <li><Link to="/contact"><Button size="sm">Get Started</Button></Link></li>
+                <li><Link to="/contact"><Button size="sm" className="whitespace-nowrap">Get Started</Button></Link></li>
               </ul>
 
               {/* Mobile Menu Button */}
