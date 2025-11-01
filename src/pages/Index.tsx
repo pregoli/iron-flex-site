@@ -3,15 +3,18 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Dumbbell, Users, Trophy, Clock, MapPin, Phone, Mail, AlertCircle, Target, Check } from "lucide-react";
+import { Dumbbell, Users, Trophy, Clock, MapPin, Phone, Mail, AlertCircle, Target, Check, ArrowUp } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { Navigation } from "@/components/Navigation";
 import heroImage from "@/assets/hero-boxing.jpg";
+import coachPud from "@/assets/coach-pud.png";
+import coachJerry from "@/assets/coach-jerry.png";
 
 const Index = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeSection, setActiveSection] = useState("/");
+  const [showBackToTop, setShowBackToTop] = useState(false);
   
   const sections = [
     { path: "/", id: "hero" },
@@ -32,6 +35,21 @@ const Index = () => {
       }
     }
   };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigate("/", { replace: true });
+  };
+
+  // Show/hide back to top button
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 500);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Handle initial load - scroll to section based on URL
   useEffect(() => {
@@ -349,22 +367,33 @@ const Index = () => {
               { 
                 name: "Pud", 
                 role: "Head Coach", 
-                exp: "35 years at club • 15 years coaching • 8 years head coach • Multiple champions trained"
+                exp: "35 years at club • 15 years coaching • 8 years head coach • Multiple champions trained",
+                image: coachPud
               },
               { 
                 name: "Gerry", 
                 role: "Head Junior Coach", 
-                exp: "5 years at club • 2 years Head Junior Coach"
+                exp: "5 years at club • 2 years Head Junior Coach",
+                image: coachJerry
               },
               { 
                 name: "Paul", 
                 role: "Senior Coach", 
-                exp: "30 years club member • 25 years coaching • Well-respected in boxing community"
+                exp: "30 years club member • 25 years coaching • Well-respected in boxing community",
+                image: null
               }
             ].map((trainer, i) => (
               <Card key={i} className="p-6 bg-gradient-card border-border hover:border-primary transition-all group animate-scale-in" style={{ animationDelay: `${i * 0.1}s` }}>
                 <div className="aspect-square bg-muted rounded-lg mb-4 overflow-hidden group-hover:scale-105 transition-transform flex items-center justify-center">
-                  <Users className="w-24 h-24 text-muted-foreground" />
+                  {trainer.image ? (
+                    <img 
+                      src={trainer.image} 
+                      alt={`${trainer.name} - ${trainer.role}`}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <Users className="w-24 h-24 text-muted-foreground" />
+                  )}
                 </div>
                 <h3 className="font-display text-2xl mb-1">{trainer.name}</h3>
                 <p className="text-primary text-sm font-semibold mb-2">{trainer.role}</p>
@@ -746,6 +775,17 @@ const Index = () => {
             </div>
           </div>
         </footer>
+
+        {/* Back to Top Button */}
+        {showBackToTop && (
+          <button
+            onClick={scrollToTop}
+            className="fixed bottom-8 right-8 z-50 p-4 bg-primary text-primary-foreground rounded-full shadow-lg hover:shadow-glow transition-all hover:scale-110 animate-fade-in"
+            aria-label="Back to top"
+          >
+            <ArrowUp className="w-6 h-6" />
+          </button>
+        )}
       </div>
     </>
   );
