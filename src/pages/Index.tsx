@@ -67,7 +67,7 @@ const Index = () => {
         <Navigation />
 
         {/* Hero Section */}
-        <header id="hero" className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
+        <header className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${heroImage})` }}
@@ -122,7 +122,7 @@ const Index = () => {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-24 container mx-auto px-6">
+        <section className="py-24 container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-display text-5xl md:text-6xl text-center mb-4">ABOUT US</h2>
             <p className="text-center text-muted-foreground mb-12 text-lg">England Boxing Affiliated Championship Boxing Club</p>
@@ -186,7 +186,7 @@ const Index = () => {
         </section>
 
         {/* Programs Section */}
-        <section id="programs" className="py-24 bg-secondary/50">
+        <section className="py-24 bg-secondary/50">
           <div className="container mx-auto px-6">
             <h2 className="font-display text-5xl md:text-6xl text-center mb-4">BOXING PROGRAMS</h2>
             <p className="text-center text-muted-foreground mb-16 text-lg">Programs for all ages - Juniors (9-17) & Adults (18+)</p>
@@ -280,7 +280,7 @@ const Index = () => {
         </section>
 
         {/* Trainers Section */}
-        <section id="trainers" className="py-24 container mx-auto px-6">
+        <section className="py-24 container mx-auto px-6">
           <h2 className="font-display text-5xl md:text-6xl text-center mb-4">OUR COACHES</h2>
           <p className="text-center text-muted-foreground mb-16 text-lg">Qualified England Boxing coaches with championship experience</p>
           
@@ -320,7 +320,7 @@ const Index = () => {
         </section>
 
         {/* Pricing Section */}
-        <section id="pricing" className="py-24 bg-secondary/50">
+        <section className="py-24 bg-secondary/50">
           <div className="container mx-auto px-6">
             <h2 className="font-display text-5xl md:text-6xl text-center mb-4">PRICING</h2>
             <p className="text-center text-muted-foreground mb-16 text-lg">Affordable boxing for everyone</p>
@@ -466,7 +466,7 @@ const Index = () => {
         </section>
 
         {/* Contact/Footer Section */}
-        <footer id="contact" className="py-16 bg-secondary/50 border-t border-border" role="contentinfo">
+        <footer className="py-16 bg-secondary/50 border-t border-border" role="contentinfo">
           <div className="container mx-auto px-6">
             <h2 className="font-display text-4xl text-center mb-4">GET IN TOUCH</h2>
             <p className="text-center text-muted-foreground mb-12">Ready to start your boxing journey? Contact us today</p>
