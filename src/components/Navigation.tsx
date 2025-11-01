@@ -3,20 +3,37 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
-export const Navigation = () => {
+interface NavigationProps {
+  onNavigate?: (sectionId: string) => void;
+}
+
+export const Navigation = ({ onNavigate }: NavigationProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   
-  const isActive = (path: string) => location.pathname === path;
-  
   const navItems = [
-    { path: "/", label: "Home" },
-    { path: "/about", label: "About" },
-    { path: "/programs", label: "Programs" },
-    { path: "/coaches", label: "Coaches" },
-    { path: "/pricing", label: "Pricing" },
-    { path: "/contact", label: "Contact" }
+    { id: "hero", label: "Home" },
+    { id: "about", label: "About" },
+    { id: "programs", label: "Programs" },
+    { id: "coaches", label: "Coaches" },
+    { id: "pricing", label: "Pricing" },
+    { id: "contact", label: "Contact" }
   ];
+
+  const handleClick = (e: React.MouseEvent, sectionId: string) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    
+    if (onNavigate) {
+      onNavigate(sectionId);
+    } else {
+      // Fallback if no onNavigate handler
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border" role="navigation" aria-label="Main navigation">
@@ -29,17 +46,14 @@ export const Navigation = () => {
           {/* Desktop Menu */}
           <ul className="hidden md:flex items-center gap-8 flex-shrink-0">
             {navItems.map((item) => (
-              <li key={item.path}>
-                <Link 
-                  to={item.path}
-                  className={`transition-colors font-medium whitespace-nowrap ${
-                    isActive(item.path) 
-                      ? "text-primary" 
-                      : "text-foreground hover:text-primary"
-                  }`}
+              <li key={item.id}>
+                <a 
+                  href={`#${item.id}`}
+                  onClick={(e) => handleClick(e, item.id)}
+                  className="transition-colors font-medium whitespace-nowrap text-foreground hover:text-primary"
                 >
                   {item.label}
-                </Link>
+                </a>
               </li>
             ))}
             <li>
@@ -56,9 +70,12 @@ export const Navigation = () => {
               </a>
             </li>
             <li>
-              <Link to="/contact">
+              <a 
+                href="#contact"
+                onClick={(e) => handleClick(e, 'contact')}
+              >
                 <Button size="sm" className="whitespace-nowrap">Get Started</Button>
-              </Link>
+              </a>
             </li>
           </ul>
 
@@ -77,20 +94,21 @@ export const Navigation = () => {
         {mobileMenuOpen && (
           <div className="md:hidden py-4 space-y-3 border-t border-border">
             {navItems.map((item) => (
-              <Link 
-                key={item.path}
-                to={item.path}
-                className={`block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium ${
-                  isActive(item.path) ? "text-primary bg-accent" : ""
-                }`}
-                onClick={() => setMobileMenuOpen(false)}
+              <a 
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={(e) => handleClick(e, item.id)}
+                className="block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium"
               >
                 {item.label}
-              </Link>
+              </a>
             ))}
-            <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
+            <a 
+              href="#contact"
+              onClick={(e) => handleClick(e, 'contact')}
+            >
               <Button className="w-full">Get Started</Button>
-            </Link>
+            </a>
           </div>
         )}
       </div>

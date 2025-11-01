@@ -3,11 +3,17 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dumbbell, Users, Trophy, Clock, MapPin, Phone, Mail, AlertCircle, Target, Check } from "lucide-react";
 import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
 import heroImage from "@/assets/hero-boxing.jpg";
 
 const Index = () => {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "SportsActivityLocation",
@@ -64,10 +70,10 @@ const Index = () => {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
 
-        <Navigation />
+        <Navigation onNavigate={scrollToSection} />
 
         {/* Hero Section */}
-        <header className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
+        <header id="hero" className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${heroImage})` }}
@@ -88,16 +94,12 @@ const Index = () => {
               Twickenham ABC - England Boxing Affiliated. Junior (9-17) & Adult (18+) Programs.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Link to="/contact">
-                <Button size="lg" className="bg-gradient-hero text-lg px-8 py-6 font-bold hover:shadow-glow transition-all">
-                  GET STARTED
-                </Button>
-              </Link>
-              <Link to="/about">
-                <Button size="lg" variant="secondary" className="text-lg px-8 py-6 font-bold">
-                  LEARN MORE
-                </Button>
-              </Link>
+              <Button size="lg" onClick={() => scrollToSection('contact')} className="bg-gradient-hero text-lg px-8 py-6 font-bold hover:shadow-glow transition-all">
+                GET STARTED
+              </Button>
+              <Button size="lg" variant="secondary" onClick={() => scrollToSection('about')} className="text-lg px-8 py-6 font-bold">
+                LEARN MORE
+              </Button>
             </div>
           </div>
         </header>
@@ -122,7 +124,7 @@ const Index = () => {
         </section>
 
         {/* About Section */}
-        <section className="py-24 container mx-auto px-6">
+        <section id="about" className="py-24 container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-display text-5xl md:text-6xl text-center mb-4">ABOUT US</h2>
             <p className="text-center text-muted-foreground mb-12 text-lg">England Boxing Affiliated Championship Boxing Club</p>
@@ -174,11 +176,9 @@ const Index = () => {
                   <p className="text-sm text-muted-foreground mb-2">
                     Need focused, one-on-one attention? Private coaching sessions available at £30 per hour.
                   </p>
-                  <Link to="/contact">
-                    <Button variant="outline" size="sm">
-                      Email for Details
-                    </Button>
-                  </Link>
+                  <Button variant="outline" size="sm" onClick={() => scrollToSection('contact')}>
+                    Email for Details
+                  </Button>
                 </div>
               </div>
             </Card>
@@ -186,7 +186,7 @@ const Index = () => {
         </section>
 
         {/* Programs Section */}
-        <section className="py-24 bg-secondary/50">
+        <section id="programs" className="py-24 bg-secondary/50">
           <div className="container mx-auto px-6">
             <h2 className="font-display text-5xl md:text-6xl text-center mb-4">BOXING PROGRAMS</h2>
             <p className="text-center text-muted-foreground mb-16 text-lg">Programs for all ages - Juniors (9-17) & Adults (18+)</p>
@@ -223,9 +223,7 @@ const Index = () => {
                         </li>
                       ))}
                     </ul>
-                    <Link to="/contact" className="w-full">
-                      <Button variant="secondary" className="w-full font-bold">Get Started</Button>
-                    </Link>
+                    <Button variant="secondary" onClick={() => scrollToSection('contact')} className="w-full font-bold">Get Started</Button>
                   </Card>
                 ))}
               </div>
@@ -269,9 +267,7 @@ const Index = () => {
                         </li>
                       ))}
                     </ul>
-                    <Link to="/contact" className="w-full">
-                      <Button variant="secondary" className="w-full font-bold">Get Started</Button>
-                    </Link>
+                    <Button variant="secondary" onClick={() => scrollToSection('contact')} className="w-full font-bold">Get Started</Button>
                   </Card>
                 ))}
               </div>
@@ -280,7 +276,7 @@ const Index = () => {
         </section>
 
         {/* Trainers Section */}
-        <section className="py-24 container mx-auto px-6">
+        <section id="coaches" className="py-24 container mx-auto px-6">
           <h2 className="font-display text-5xl md:text-6xl text-center mb-4">OUR COACHES</h2>
           <p className="text-center text-muted-foreground mb-16 text-lg">Qualified England Boxing coaches with championship experience</p>
           
@@ -313,14 +309,12 @@ const Index = () => {
             ))}
           </div>
           <div className="text-center mt-12">
-            <Link to="/coaches">
-              <Button variant="outline" size="lg">Meet Our Coaches</Button>
-            </Link>
+            <Button variant="outline" size="lg" onClick={() => scrollToSection('coaches')}>Meet Our Coaches</Button>
           </div>
         </section>
 
         {/* Pricing Section */}
-        <section className="py-24 bg-secondary/50">
+        <section id="pricing" className="py-24 bg-secondary/50">
           <div className="container mx-auto px-6">
             <h2 className="font-display text-5xl md:text-6xl text-center mb-4">PRICING</h2>
             <p className="text-center text-muted-foreground mb-16 text-lg">Affordable boxing for everyone</p>
@@ -355,11 +349,9 @@ const Index = () => {
                       <span>No commitment required</span>
                     </div>
                   </div>
-                  <Link to="/contact" className="w-full">
-                    <Button variant="secondary" className="w-full font-bold">
-                      Come Train
-                    </Button>
-                  </Link>
+                  <Button onClick={() => scrollToSection('contact')} variant="secondary" className="w-full font-bold">
+                    Come Train
+                  </Button>
                 </Card>
 
                 <Card className="p-8 bg-gradient-card border-primary shadow-glow scale-105 relative overflow-hidden">
@@ -392,11 +384,9 @@ const Index = () => {
                       <span>Save over 40% vs drop-in</span>
                     </div>
                   </div>
-                  <Link to="/contact" className="w-full">
-                    <Button className="w-full font-bold bg-gradient-hero">
-                      Get Monthly Pass
-                    </Button>
-                  </Link>
+                  <Button onClick={() => scrollToSection('contact')} className="w-full font-bold bg-gradient-hero">
+                    Get Monthly Pass
+                  </Button>
                 </Card>
               </div>
 
@@ -439,11 +429,9 @@ const Index = () => {
                     <span>Flexible scheduling</span>
                   </div>
                 </div>
-                <Link to="/contact" className="w-full">
-                  <Button variant="outline" className="w-full font-bold">
-                    Book Session
-                  </Button>
-                </Link>
+                <Button onClick={() => scrollToSection('contact')} variant="outline" className="w-full font-bold">
+                  Book Session
+                </Button>
               </Card>
             </div>
           </div>
@@ -457,16 +445,14 @@ const Index = () => {
             <p className="text-xl mb-8 max-w-2xl mx-auto text-primary-foreground/90">
               Fill out the form below and we&apos;ll get back to you as soon as possible
             </p>
-            <Link to="/contact">
-              <Button size="lg" variant="secondary" className="text-lg px-8 py-6 font-bold">
-                CONTACT US NOW
-              </Button>
-            </Link>
+            <Button size="lg" variant="secondary" onClick={() => scrollToSection('contact')} className="text-lg px-8 py-6 font-bold">
+              CONTACT US NOW
+            </Button>
           </div>
         </section>
 
         {/* Contact/Footer Section */}
-        <footer className="py-16 bg-secondary/50 border-t border-border" role="contentinfo">
+        <footer id="contact" className="py-16 bg-secondary/50 border-t border-border" role="contentinfo">
           <div className="container mx-auto px-6">
             <h2 className="font-display text-4xl text-center mb-4">GET IN TOUCH</h2>
             <p className="text-center text-muted-foreground mb-12">Ready to start your boxing journey? Contact us today</p>
