@@ -75,7 +75,7 @@ const Index = () => {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
 
-        <Navigation />
+        <Navigation enableScrolling={true} />
 
         {/* Hero Section */}
         <header id="hero" className="relative h-screen flex items-center justify-center overflow-hidden pt-16">

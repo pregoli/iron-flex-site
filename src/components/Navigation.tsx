@@ -1,22 +1,45 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
-export const Navigation = () => {
+interface NavigationProps {
+  enableScrolling?: boolean;
+}
+
+export const Navigation = ({ enableScrolling = false }: NavigationProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   
   const isActive = (path: string) => location.pathname === path;
   
   const navItems = [
-    { path: "/", label: "Home" },
-    { path: "/about", label: "About" },
-    { path: "/programs", label: "Programs" },
-    { path: "/coaches", label: "Coaches" },
-    { path: "/pricing", label: "Pricing" },
-    { path: "/contact", label: "Contact" }
+    { path: "/", label: "Home", sectionId: "hero" },
+    { path: "/about", label: "About", sectionId: "about" },
+    { path: "/programs", label: "Programs", sectionId: "programs" },
+    { path: "/coaches", label: "Coaches", sectionId: "trainers" },
+    { path: "/pricing", label: "Pricing", sectionId: "pricing" },
+    { path: "/contact", label: "Contact", sectionId: "contact" }
   ];
+
+  const handleNavClick = (e: React.MouseEvent, item: typeof navItems[0]) => {
+    if (enableScrolling && location.pathname === "/") {
+      // Scroll to section on Index page
+      e.preventDefault();
+      const element = document.getElementById(item.sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setMobileMenuOpen(false);
+      }
+    } else if (enableScrolling && location.pathname !== "/") {
+      // Navigate to home page with hash
+      e.preventDefault();
+      navigate(`/#${item.sectionId}`);
+      setMobileMenuOpen(false);
+    }
+    // Otherwise, let Link handle navigation normally
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border" role="navigation" aria-label="Main navigation">
@@ -32,6 +55,7 @@ export const Navigation = () => {
               <li key={item.path}>
                 <Link 
                   to={item.path}
+                  onClick={(e) => handleNavClick(e, item)}
                   className={`transition-colors font-medium whitespace-nowrap ${
                     isActive(item.path) 
                       ? "text-primary" 
@@ -80,10 +104,10 @@ export const Navigation = () => {
               <Link 
                 key={item.path}
                 to={item.path}
+                onClick={(e) => handleNavClick(e, item)}
                 className={`block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium ${
                   isActive(item.path) ? "text-primary bg-accent" : ""
                 }`}
-                onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
               </Link>
