@@ -401,9 +401,6 @@ const Index = () => {
               </Card>
             ))}
           </div>
-          <div className="text-center mt-12">
-            <Button variant="outline" size="lg" onClick={() => scrollToSection('/coaches')}>Meet Our Coaches</Button>
-          </div>
         </section>
 
         {/* Pricing Section */}
