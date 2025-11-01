@@ -1,9 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Dumbbell, Users, Trophy, Menu, X, Clock, MapPin, Phone, Mail, AlertCircle } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Dumbbell, Users, Trophy, Menu, X, Clock, MapPin, Phone, Mail, AlertCircle, Target, Instagram, Check } from "lucide-react";
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-boxing.jpg";
 import coachPud from "@/assets/coach-pud.png";
 import coachJerry from "@/assets/coach-jerry.png";
@@ -80,15 +84,15 @@ const Index = () => {
         <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border" role="navigation" aria-label="Main navigation">
           <div className="container mx-auto px-6">
             <div className="flex items-center justify-between h-16">
-              <h2 className="font-display text-2xl font-bold cursor-pointer" onClick={() => scrollToSection('hero')}>BRUNSWICK BOXING</h2>
+              <Link to="/" className="font-display text-2xl font-bold">BRUNSWICK BOXING</Link>
               
               {/* Desktop Menu */}
               <ul className="hidden md:flex items-center space-x-8">
-                <li><button onClick={() => scrollToSection('about')} className="text-foreground hover:text-primary transition-colors font-medium">About</button></li>
-                <li><button onClick={() => scrollToSection('programs')} className="text-foreground hover:text-primary transition-colors font-medium">Programs</button></li>
-                <li><button onClick={() => scrollToSection('trainers')} className="text-foreground hover:text-primary transition-colors font-medium">Coaches</button></li>
-                <li><button onClick={() => scrollToSection('pricing')} className="text-foreground hover:text-primary transition-colors font-medium">Pricing</button></li>
-                <li><button onClick={() => scrollToSection('contact')} className="text-foreground hover:text-primary transition-colors font-medium">Contact</button></li>
+                <li><Link to="/about" className="text-foreground hover:text-primary transition-colors font-medium">About</Link></li>
+                <li><Link to="/programs" className="text-foreground hover:text-primary transition-colors font-medium">Programs</Link></li>
+                <li><Link to="/coaches" className="text-foreground hover:text-primary transition-colors font-medium">Coaches</Link></li>
+                <li><Link to="/pricing" className="text-foreground hover:text-primary transition-colors font-medium">Pricing</Link></li>
+                <li><Link to="/contact" className="text-foreground hover:text-primary transition-colors font-medium">Contact</Link></li>
                 <li>
                   <a 
                     href="https://www.instagram.com/twickenham_brunswick_abc" 
@@ -102,7 +106,7 @@ const Index = () => {
                     </svg>
                   </a>
                 </li>
-                <li><Button onClick={() => scrollToSection('contact')} size="sm">Get Started</Button></li>
+                <li><Link to="/contact"><Button size="sm">Get Started</Button></Link></li>
               </ul>
 
               {/* Mobile Menu Button */}
@@ -119,12 +123,12 @@ const Index = () => {
             {/* Mobile Menu */}
             {mobileMenuOpen && (
               <div className="md:hidden py-4 space-y-3 border-t border-border">
-                <button onClick={() => scrollToSection('about')} className="block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium">About</button>
-                <button onClick={() => scrollToSection('programs')} className="block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium">Programs</button>
-                <button onClick={() => scrollToSection('trainers')} className="block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium">Coaches</button>
-                <button onClick={() => scrollToSection('pricing')} className="block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium">Pricing</button>
-                <button onClick={() => scrollToSection('contact')} className="block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium">Contact</button>
-                <Button onClick={() => scrollToSection('contact')} className="w-full">Get Started</Button>
+                <Link to="/about" className="block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium" onClick={() => setMobileMenuOpen(false)}>About</Link>
+                <Link to="/programs" className="block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium" onClick={() => setMobileMenuOpen(false)}>Programs</Link>
+                <Link to="/coaches" className="block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium" onClick={() => setMobileMenuOpen(false)}>Coaches</Link>
+                <Link to="/pricing" className="block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium" onClick={() => setMobileMenuOpen(false)}>Pricing</Link>
+                <Link to="/contact" className="block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+                <Link to="/contact" onClick={() => setMobileMenuOpen(false)}><Button className="w-full">Get Started</Button></Link>
               </div>
             )}
           </div>
