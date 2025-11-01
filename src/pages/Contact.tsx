@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, Instagram, MapPin, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Navigation } from "@/components/Navigation";
 
 const Contact = () => {
   const schedule = [
@@ -25,21 +26,9 @@ const Contact = () => {
         <link rel="canonical" href="https://www.brunswickboxing.co.uk/contact" />
       </Helmet>
 
-      <nav className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/" className="text-2xl font-bold">BRUNSWICK BOXING</Link>
-          <div className="hidden md:flex gap-6">
-            <Link to="/" className="hover:text-primary transition-colors">Home</Link>
-            <Link to="/about" className="hover:text-primary transition-colors">About</Link>
-            <Link to="/programs" className="hover:text-primary transition-colors">Programs</Link>
-            <Link to="/coaches" className="hover:text-primary transition-colors">Coaches</Link>
-            <Link to="/pricing" className="hover:text-primary transition-colors">Pricing</Link>
-            <Link to="/contact" className="text-primary">Contact</Link>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
-      <section className="py-20 bg-secondary/30">
+      <section className="pt-32 pb-20 bg-secondary/30">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">Get In Touch</h1>
           <p className="text-xl text-center text-muted-foreground mb-16 max-w-3xl mx-auto">
