@@ -1,37 +1,31 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
 interface NavigationProps {
-  onNavigate?: (sectionId: string) => void;
+  onNavigate?: (path: string) => void;
+  activePath?: string;
 }
 
-export const Navigation = ({ onNavigate }: NavigationProps) => {
+export const Navigation = ({ onNavigate, activePath = "/" }: NavigationProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
   
   const navItems = [
-    { id: "hero", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "programs", label: "Programs" },
-    { id: "coaches", label: "Coaches" },
-    { id: "pricing", label: "Pricing" },
-    { id: "contact", label: "Contact" }
+    { path: "/", label: "Home" },
+    { path: "/about", label: "About" },
+    { path: "/programs", label: "Programs" },
+    { path: "/coaches", label: "Coaches" },
+    { path: "/pricing", label: "Pricing" },
+    { path: "/contact", label: "Contact" }
   ];
 
-  const handleClick = (e: React.MouseEvent, sectionId: string) => {
+  const handleClick = (e: React.MouseEvent, path: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
     
     if (onNavigate) {
-      onNavigate(sectionId);
-    } else {
-      // Fallback if no onNavigate handler
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+      onNavigate(path);
     }
   };
 
@@ -39,21 +33,25 @@ export const Navigation = ({ onNavigate }: NavigationProps) => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border" role="navigation" aria-label="Main navigation">
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="font-display text-2xl font-bold flex-shrink-0">
+          <Link to="/" onClick={(e) => handleClick(e, "/")} className="font-display text-2xl font-bold flex-shrink-0">
             BRUNSWICK BOXING
           </Link>
           
           {/* Desktop Menu */}
           <ul className="hidden md:flex items-center gap-8 flex-shrink-0">
             {navItems.map((item) => (
-              <li key={item.id}>
-                <a 
-                  href={`#${item.id}`}
-                  onClick={(e) => handleClick(e, item.id)}
-                  className="transition-colors font-medium whitespace-nowrap text-foreground hover:text-primary"
+              <li key={item.path}>
+                <Link 
+                  to={item.path}
+                  onClick={(e) => handleClick(e, item.path)}
+                  className={`transition-colors font-medium whitespace-nowrap ${
+                    activePath === item.path
+                      ? "text-primary" 
+                      : "text-foreground hover:text-primary"
+                  }`}
                 >
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
             <li>
@@ -70,12 +68,12 @@ export const Navigation = ({ onNavigate }: NavigationProps) => {
               </a>
             </li>
             <li>
-              <a 
-                href="#contact"
-                onClick={(e) => handleClick(e, 'contact')}
+              <Link 
+                to="/contact"
+                onClick={(e) => handleClick(e, '/contact')}
               >
                 <Button size="sm" className="whitespace-nowrap">Get Started</Button>
-              </a>
+              </Link>
             </li>
           </ul>
 
@@ -94,21 +92,23 @@ export const Navigation = ({ onNavigate }: NavigationProps) => {
         {mobileMenuOpen && (
           <div className="md:hidden py-4 space-y-3 border-t border-border">
             {navItems.map((item) => (
-              <a 
-                key={item.id}
-                href={`#${item.id}`}
-                onClick={(e) => handleClick(e, item.id)}
-                className="block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium"
+              <Link 
+                key={item.path}
+                to={item.path}
+                onClick={(e) => handleClick(e, item.path)}
+                className={`block w-full text-left px-4 py-2 hover:bg-accent rounded font-medium ${
+                  activePath === item.path ? "text-primary bg-accent" : ""
+                }`}
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
-            <a 
-              href="#contact"
-              onClick={(e) => handleClick(e, 'contact')}
+            <Link 
+              to="/contact"
+              onClick={(e) => handleClick(e, '/contact')}
             >
               <Button className="w-full">Get Started</Button>
-            </a>
+            </Link>
           </div>
         )}
       </div>

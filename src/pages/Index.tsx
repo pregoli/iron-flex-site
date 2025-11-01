@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -7,12 +9,74 @@ import { Navigation } from "@/components/Navigation";
 import heroImage from "@/assets/hero-boxing.jpg";
 
 const Index = () => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [activeSection, setActiveSection] = useState("/");
+  
+  const sections = [
+    { path: "/", id: "hero" },
+    { path: "/about", id: "about" },
+    { path: "/programs", id: "programs" },
+    { path: "/coaches", id: "coaches" },
+    { path: "/pricing", id: "pricing" },
+    { path: "/contact", id: "contact" }
+  ];
+
+  const scrollToSection = (path: string) => {
+    const section = sections.find(s => s.path === path);
+    if (section) {
+      const element = document.getElementById(section.id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        navigate(path, { replace: true });
+      }
     }
   };
+
+  // Handle initial load - scroll to section based on URL
+  useEffect(() => {
+    const section = sections.find(s => s.path === location.pathname);
+    if (section && section.id !== "hero") {
+      setTimeout(() => {
+        const element = document.getElementById(section.id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, []); // Only run on mount
+
+  // Observe sections and update URL based on scroll position
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-50% 0px -50% 0px',
+      threshold: 0
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const section = sections.find(s => s.id === entry.target.id);
+          if (section && section.path !== activeSection) {
+            setActiveSection(section.path);
+            navigate(section.path, { replace: true });
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sections.forEach(section => {
+      const element = document.getElementById(section.id);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, [activeSection, navigate]);
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -70,7 +134,7 @@ const Index = () => {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
 
-        <Navigation onNavigate={scrollToSection} />
+        <Navigation onNavigate={scrollToSection} activePath={activeSection} />
 
         {/* Hero Section */}
         <header id="hero" className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
@@ -94,10 +158,10 @@ const Index = () => {
               Twickenham ABC - England Boxing Affiliated. Junior (9-17) & Adult (18+) Programs.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Button size="lg" onClick={() => scrollToSection('contact')} className="bg-gradient-hero text-lg px-8 py-6 font-bold hover:shadow-glow transition-all">
+              <Button size="lg" onClick={() => scrollToSection('/contact')} className="bg-gradient-hero text-lg px-8 py-6 font-bold hover:shadow-glow transition-all">
                 GET STARTED
               </Button>
-              <Button size="lg" variant="secondary" onClick={() => scrollToSection('about')} className="text-lg px-8 py-6 font-bold">
+              <Button size="lg" variant="secondary" onClick={() => scrollToSection('/about')} className="text-lg px-8 py-6 font-bold">
                 LEARN MORE
               </Button>
             </div>
@@ -176,7 +240,7 @@ const Index = () => {
                   <p className="text-sm text-muted-foreground mb-2">
                     Need focused, one-on-one attention? Private coaching sessions available at £30 per hour.
                   </p>
-                  <Button variant="outline" size="sm" onClick={() => scrollToSection('contact')}>
+                  <Button variant="outline" size="sm" onClick={() => scrollToSection('/contact')}>
                     Email for Details
                   </Button>
                 </div>
@@ -223,7 +287,7 @@ const Index = () => {
                         </li>
                       ))}
                     </ul>
-                    <Button variant="secondary" onClick={() => scrollToSection('contact')} className="w-full font-bold">Get Started</Button>
+                    <Button variant="secondary" onClick={() => scrollToSection('/contact')} className="w-full font-bold">Get Started</Button>
                   </Card>
                 ))}
               </div>
@@ -267,7 +331,7 @@ const Index = () => {
                         </li>
                       ))}
                     </ul>
-                    <Button variant="secondary" onClick={() => scrollToSection('contact')} className="w-full font-bold">Get Started</Button>
+                    <Button variant="secondary" onClick={() => scrollToSection('/contact')} className="w-full font-bold">Get Started</Button>
                   </Card>
                 ))}
               </div>
@@ -309,7 +373,7 @@ const Index = () => {
             ))}
           </div>
           <div className="text-center mt-12">
-            <Button variant="outline" size="lg" onClick={() => scrollToSection('coaches')}>Meet Our Coaches</Button>
+            <Button variant="outline" size="lg" onClick={() => scrollToSection('/coaches')}>Meet Our Coaches</Button>
           </div>
         </section>
 
@@ -349,7 +413,7 @@ const Index = () => {
                       <span>No commitment required</span>
                     </div>
                   </div>
-                  <Button onClick={() => scrollToSection('contact')} variant="secondary" className="w-full font-bold">
+                  <Button onClick={() => scrollToSection('/contact')} variant="secondary" className="w-full font-bold">
                     Come Train
                   </Button>
                 </Card>
@@ -384,7 +448,7 @@ const Index = () => {
                       <span>Save over 40% vs drop-in</span>
                     </div>
                   </div>
-                  <Button onClick={() => scrollToSection('contact')} className="w-full font-bold bg-gradient-hero">
+                  <Button onClick={() => scrollToSection('/contact')} className="w-full font-bold bg-gradient-hero">
                     Get Monthly Pass
                   </Button>
                 </Card>
@@ -429,7 +493,7 @@ const Index = () => {
                     <span>Flexible scheduling</span>
                   </div>
                 </div>
-                <Button onClick={() => scrollToSection('contact')} variant="outline" className="w-full font-bold">
+                <Button onClick={() => scrollToSection('/contact')} variant="outline" className="w-full font-bold">
                   Book Session
                 </Button>
               </Card>
@@ -445,7 +509,7 @@ const Index = () => {
             <p className="text-xl mb-8 max-w-2xl mx-auto text-primary-foreground/90">
               Fill out the form below and we&apos;ll get back to you as soon as possible
             </p>
-            <Button size="lg" variant="secondary" onClick={() => scrollToSection('contact')} className="text-lg px-8 py-6 font-bold">
+            <Button size="lg" variant="secondary" onClick={() => scrollToSection('/contact')} className="text-lg px-8 py-6 font-bold">
               CONTACT US NOW
             </Button>
           </div>
