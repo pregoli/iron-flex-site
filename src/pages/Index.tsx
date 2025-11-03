@@ -9,6 +9,7 @@ import { Navigation } from "@/components/Navigation";
 import heroImage from "@/assets/hero-boxing.jpg";
 import coachPud from "@/assets/coach-pud.png";
 import coachJerry from "@/assets/coach-jerry.png";
+import coachPaul from "@/assets/coach-paul.jpg";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -380,7 +381,7 @@ const Index = () => {
                 name: "Paul", 
                 role: "Senior Coach", 
                 exp: "30 years club member • 25 years coaching • Well-respected in boxing community",
-                image: null
+                image: coachPaul
               }
             ].map((trainer, i) => (
               <Card key={i} className="p-6 bg-gradient-card border-border hover:border-primary transition-all group animate-scale-in" style={{ animationDelay: `${i * 0.1}s` }}>
